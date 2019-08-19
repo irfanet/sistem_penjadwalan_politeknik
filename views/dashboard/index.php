@@ -216,7 +216,7 @@ a:link{
 
 		<?php foreach ($notif as $alert) {	?>
 
-		<div class="alert alert-warning fade in">
+		<div class="alert alert-danger fade in">
 			<strong>Segera Upload Soal ! </strong> <?= $alert->makul . ''; ?>
 			<p class="pull-right">
 				<?php foreach ($class as $kls) {
