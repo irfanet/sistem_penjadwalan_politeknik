@@ -119,6 +119,7 @@ class Pegawai extends CI_Controller {
             $this->form_validation->set_rules('prodi', 'Program Studi', 'required|trim');
         }
         $this->form_validation->set_rules('jabatan', 'Jabatan', 'required|trim');
+        
         $this->form_validation->set_rules('email','Email','required|trim|valid_email|is_unique[pegawai.email]',[
             'is_unique' => 'This email has already registered!'
         ]);
@@ -163,6 +164,7 @@ class Pegawai extends CI_Controller {
 		$this->session->userdata('nip')])->row_array();
        
         $data['status'] = ['1','0'];
+        $data['golongan'] = ['3','4'];
         $data['jabatan'] = ['Kaprodi','Dosen','Panitia','Petugas'];
         $data['pegawai'] = $this->Pegawai_model->getPegawaiById($id);
 

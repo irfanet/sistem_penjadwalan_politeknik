@@ -57,9 +57,10 @@
 											<label class="col-md-2 control-label">Jabatan :</label>
 											<div class="col-md-8">
 													<select id="jabatan" class="form-control" name="jabatan" required="">
+													<option value="" selected>-- Silahkan Pilih Kembali --</option>
 													<?php foreach($jabatan as $j): ?>
 														<?php if($j == $pegawai['jabatan']): ?>
-															<option value="<?= $j; ?>" selected>
+															<option value="<?= $j; ?>">
 																<?= $pegawai['jabatan']; ?>
 															</option>
 														<?php else : ?>
@@ -78,6 +79,7 @@
 											<label class="col-md-2 control-label">Program Studi :</label>
 											<div class="col-md-8">
 													<select id="prodi" class="form-control" name="prodi" required="" <?php echo $disable?>>
+													
 													<?php foreach($prodi as $r){ ?>
                                                             <?php if($r['kode'] == $pegawai['id_prodi']): ?>
                                                                 <option value="<?= $r['kode']; ?>" selected><?= $r['nama']; ?></option>
@@ -85,6 +87,27 @@
                                                                 <option value="<?= $r['kode']; ?>"><?= $r['nama']; ?></option>
                                                             <?php endif; ?>
                                                     <?php } ?>
+													</select>
+											</div>
+									</div>
+									<?php 
+										if($pegawai['jabatan']!='Dosen' || $pegawai['jabatan']!='Kaprodi'){
+											$disable = 'disabled';
+										} 
+									?>
+									<div class="form-group">
+											<label class="col-md-2 control-label">Golongan :</label>
+											<div class="col-md-8">
+													<select id="golongan" class="form-control"  name="golongan" required="" <?php echo $disable?>>
+													<?php foreach($golongan as $j): ?>
+														<?php if($j == $pegawai['golongan']): ?>
+															<option value="<?= $j; ?>" selected>
+															<?php if($j==3){ echo '3'; } else{ echo '4'; } ?>
+															</option>
+														<?php else : ?>
+															<option value="<?= $j; ?>"><?php if($j==4){ echo '4'; } else{ echo '3'; } ?></option>
+														<?php endif; ?>
+													<?php endforeach; ?>
 													</select>
 											</div>
 									</div>
@@ -108,8 +131,25 @@
 		</div>
 		<script>
 				document.getElementById("jabatan").onchange = function () {
-				document.getElementById("prodi").setAttribute("disabled", "disabled");
+				document.getElementById("prodi").setAttribute("disabled", "disabled")
+				document.getElementById("golongan").setAttribute("disabled","disabled");
 				if (this.value == 'Dosen' || this.value =='Kaprodi')
-					document.getElementById("prodi").removeAttribute("disabled");
+					document.getElementById("prodi").removeAttribute("disabled")
+					document.getElementById("golongan").removeAttribute("disabled")
 				};
+
+				// document.getElementById("jabatan").onchange = function () {
+				// document.getElementById("prodi").setAttribute("disabled", "disabled");
+				// document.getElementById("golongan").setAttribute("disabled","disabled");
+				// if (this.value == 'Dosen' || this.value =='Kaprodi')
+				// 	// document.getElementById("prodi").removeAttribute("disabled");
+				// 	document.getElementById("golongan").removeAttribute("disabled");
+				// };
+
+				// document.getElementById("jabatan").onchange = function () {
+				// document.getElementById("prodi").removeAttribute("disabled");
+				// if (this.value == 'Panitia' || this.value =='Petugas')
+				// 	document.getElementById("prodi").setAttribute("disabled","disabled");
+				// 	document.getElementById("golongan").setAttribute("disabled","disabled");
+				// };
 		</script>

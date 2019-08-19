@@ -23,8 +23,9 @@
 				<!--=== Page Header ===-->
 				<div class="page-header">
 					<div class="page-title">
-						<h3>DAFTAR PENGAMPU</h3>
+						<h3>DAFTAR pengawas_cadangan</h3>
 						<?php if($this->session->userdata('jabatan') != 'Dosen'){ ?>
+							<a href="<?= base_url(); ?>pengawas_cadangan/add" class="btn btn-primary"> Tambah Data</a>
 						<a href="<?= base_url(); ?>pengawas_cadangan/in_tambah" class="btn btn-primary"> Import Data</a>
 						<?php }if($this->session->userdata('jabatan') != 'Mahasiswa'){ ?>
 							<a href="<?= base_url(); ?>pengawas_cadangan/export" class="btn btn-primary"> Export Data</a>
@@ -57,13 +58,11 @@
                                             <th>Nama Singkat</th>
 											<th>Semester</th>
 											<th>Tahun Ajaran</th>
-											<!-- <th>Status</th>
-											<?php if($this->session->userdata('jabatan') == 'Kaprodi'){ ?>
+											<?php if($this->session->userdata('jabatan') == 'Kajur'){ ?>
 											<th width="170">Aksi</th>
-											<?php } ?> -->
+											<?php } ?>
 										</tr>
 									</thead>
-									<form method="post" action="<?= base_url()?>matkul/update">
 									<tbody>
 									<?php $no=1; foreach($pengawas_cadangan as $m){ ?>
 										<tr>
@@ -72,41 +71,14 @@
                                             <td><?= $m['nama_singkat']; ?></td>
 											<td><?= $m['semester'] ?></td>
 											<td><?= $m['tahun_ajaran'] ?></td>
-<!-- 
-											<td align="center">
-											<?php if($m['status'] == 1){
-																	echo "<span class='label label-info'>Ujian</span>";
-																  }else{
-																	echo "<span class='label label-default'>Tidak ada Ujian</span>";
-																  } 
-											?>
+											<?php if ($this->session->userdata('jabatan') == 'Kajur') { ?>
+											<td class="text-center">
+												<a href="<?= base_url(); ?>pengawas_cadangan/edit/<?= $m['id']; ?>" class="btn btn-sm btn-primary">Edit</a>
+												<a href="<?= base_url(); ?>pengawas_cadangan/hapusData/<?= $m['id']; ?>" class="btn btn-sm btn-danger tombol-hapus">Hapus</a>
 											</td>
-											<?php if($this->session->userdata('jabatan') == 'Kaprodi'){ ?>
-											<td>
-													<!-- <a href="<?= base_url(); ?>matkul/edit/<?= $m['id']; ?>" class="btn btn-sm btn-primary">Edit</a> -->
-
-												<input type="hidden" name="ID_makul[]" value="<?php echo $m['id'];?>">
-                                                <?php if ($m['status']==1){?>
-                                                    <input type="radio" name="status[<?php print $m['id']; ?>]" value="1" checked> Ujian<br>
-                                                    <input type="radio" name="status[<?php print $m['id']; ?>]" value="0"> Tidak ada Ujian<br>
-                                                <?php } else{?>
-                                                    <input type="radio" name="status[<?php print $m['id']; ?>]" value="1"> Ujian<br>
-                                                    <input type="radio" name="status[<?php print $m['id']; ?>]" value="0" checked> Tidak ada Ujian<br>
-                                                <?php }?>
-													<!-- <a href="<?= base_url(); ?>matkul/hapus/<?= $m['id']; ?>" class="btn btn-sm btn-danger tombol-hapus">Hapus</a> -->
-											</td>
-											<?php } ?> -->
+										<?php } ?>
 										</tr>
 									<?php } ?>
-									<?php if($this->session->userdata('jabatan') == 'Kaprodi'){ ?>
-									<tr>
-							
-										<td colspan="6"></td>
-										<td align="center">	<input class="btn btn-primary" type="submit" value="Simpan"></button></td>
-
-								</form></td>
-									</tr>
-									<?php }?>
 									</tbody>
 								
 								</table>

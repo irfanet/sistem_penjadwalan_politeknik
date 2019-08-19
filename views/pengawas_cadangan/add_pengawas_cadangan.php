@@ -8,7 +8,7 @@
 							<a href="<?= base_url(); ?>ruang_kelas">Ruang Kelas</a>
 						</li>
 						<li class="current">
-							<a href="#" title="">Tambah Ruang Kelas</a>
+							<a href="#" title="">Tambah Pengawas Cadangan</a>
 						</li>
 					</ul>
 				</div>
@@ -17,7 +17,7 @@
 				<!--=== Page Header ===-->
 				<div class="page-header">
 					<div class="page-title">
-						<h3>TAMBAH RUANG KELAS</h3>
+						<h3>Tambah Pengawas Cadangan</h3>
 					</div>
 				</div>
 				<!-- /Page Header -->
@@ -31,29 +31,26 @@
 					<div class="col-md-12">
 						<div class="widget box">
 							<div class="widget-header">
-								<h4><i class="icon-reorder"></i> Form Tambah Ruang Kelas</h4>
+								<h4><i class="icon-reorder"></i> Form Tambah Pengawas Cadangan</h4>
 							</div>
 							<div class="widget-content">
 								<form class="form-horizontal row-border" method="post">
 										
-									<div class="form-group">
-										<label class="col-md-2 control-label">Nama :</label>
-										<div class="col-md-8"><input type="text" name="nama" title="Tooltip on focus" class="form-control bs-focus-tooltip" required=""></div>
-										<small class="form-text text-danger"><?= form_error('nama');?></small>
-									</div>
-										
-									<!-- <div class="form-group">
-										<label class="col-md-2 control-label">Kelompok :</label>
-										<div class="col-md-8"><input type="text" placeholder="1 - 12 / 13 - 24" name="kelompok" title="Tooltip on focus" class="form-control bs-focus-tooltip" required=""></div>
-										<small class="form-text text-danger"><?= form_error('kelompok');?></small>
-									</div> -->
-									<div class="form-group">
-											<label class="col-md-2 control-label">Kelompok :</label>
+                                <div class="form-group">
+											<label class="col-md-2 control-label">NIDN :</label>
 											<div class="col-md-8">
-													<select id="golongan" class="form-control" name="kelompok" required="" >
-														<option value="">-- Silahkan Pilih --</option>
-														<option value="1 - 12">1 - 12</option>
-														<option value="13 - 24">13 - 24</option>
+                                                <input type="text" name="nidn" class="form-control bs-focus-tooltip" required="">
+											</div>
+                                </div>
+                                		
+                                <div class="form-group">
+											<label class="col-md-2 control-label">Nama  :</label>
+											<div class="col-md-8">
+													<select id="nama"  name="nama" class="select2 col-md-12 full-width-fix" required="">
+														<option value="0">-- Silahkan Pilih --</option>
+														<?php foreach($pengampu as $p){ ?>
+															<option value="<?= $p['nama_singkat']; ?>"><?= $p['nama_singkat']; ?></option>
+														<?php } ?>
 													</select>
 											</div>
 									</div>

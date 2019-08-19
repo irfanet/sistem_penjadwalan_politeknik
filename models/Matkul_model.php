@@ -15,10 +15,14 @@ Class Matkul_model extends CI_Model{
     }
 
     public function tambahData(){
+      $this->getSet();
         $data = array(
-            'id_kelas' => $this->input->post('kelas',TRUE),
-            'nama_matkul' => $this->input->post('nama',TRUE),
-            'jenis_matkul' => $this->input->post('jenis_matkul',TRUE)
+            'id' => $this->input->post('kelas',TRUE),
+            'makul' => $this->input->post('nama',TRUE),
+            'prodi' => $this->input->post('prodi',TRUE),
+            'semester' => $this->semester,
+            'tahun_ajaran' => $this->tahun_ajaran,
+            'status' => $this->input->post('jenis_matkul',TRUE)
         );
 
         $this->db->insert('matkul',$data);
@@ -34,10 +38,14 @@ Class Matkul_model extends CI_Model{
     }
 
     public function editData(){
+      $this->getSet();
         $data = array(
-            'id_kelas' => $this->input->post('kelas',TRUE),
-            'nama_matkul' => $this->input->post('nama',TRUE),
-            'jenis_matkul' => $this->input->post('jenis_matkul',TRUE)
+            'id' => $this->input->post('kelas',TRUE),
+            'makul' => $this->input->post('nama',TRUE),
+            'prodi' => $this->input->post('prodi',TRUE),
+            'semester' => $this->semester,
+            'tahun_ajaran' => $this->tahun_ajaran,
+            'status' => $this->input->post('jenis_matkul',TRUE)
         );
 
         $this->db->where('id', $this->input->post('id'));

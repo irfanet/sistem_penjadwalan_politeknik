@@ -26,6 +26,7 @@
 					<div class="page-title">
 						<h3>DAFTAR RUANG KELAS</h3>
 						<?php if($this->session->userdata('jabatan') == 'Kajur'){ ?>
+							<a href="<?= base_url(); ?>ruang_kelas/add" class="btn btn-primary"> Tambah Data</a>
 						<a href="<?= base_url(); ?>ruang_kelas/in_tambah" class="btn btn-primary"> Import Data</a>
 						<?php }if($this->session->userdata('jabatan') != 'Mahasiswa'){ ?>
 							<a href="<?= base_url(); ?>ruang_kelas/export" class="btn btn-primary"> Export Data</a>

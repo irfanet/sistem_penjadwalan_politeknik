@@ -65,6 +65,38 @@ class Ruang_kelas extends CI_Controller
       redirect('ruang_kelas');
     }
   }
+  public function add()
+  {
+    //Jika bukan kajur, maka di redirect
+    if ($this->session->userdata('jabatan') != 'Kajur') {
+      redirect('prodi');
+    }
+
+    $data['title'] = 'Tambah Ruang Kelas';
+
+    $data['user'] = $this->db->get_where('pegawai', ['nip' =>
+    $this->session->userdata('nip')])->row_array();
+
+    // ('nama input','alias','rules')
+    $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+    $this->form_validation->set_rules('kelompok', 'Kelompok', 'required|trim');
+
+    if ($this->form_validation->run() == FALSE) {
+      $this->load->view('templates/header', $data);
+      $this->load->view('templates/topbar', $data);
+      $this->load->view('templates/sidebar');
+      // $this->load->view('ruang_kelas/import');
+      $this->load->view('ruang_kelas/add_ruang_kelas');
+      $this->load->view('templates/footer');
+    } else {
+      $this->Ruang_kelas_model->tambahData();
+
+      // ('nama session', 'isinya apa')
+      $this->session->set_flashdata('flash', 'Ruang Kelas Berhasil Ditambahkan');
+      redirect('ruang_kelas');
+    }
+  }
+
 
   public function hapus($id)
   {

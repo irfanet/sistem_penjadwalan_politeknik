@@ -59,6 +59,9 @@
 											<th>Semester</th>
 											<th>Tahun Ajaran</th>
 											<th>Status</th>
+											<?php if($this->session->userdata('jabatan') == 'Kajur'){ ?>
+											<th width="170">Aksi</th>
+											<?php } ?>
 											<?php if($this->session->userdata('jabatan') == 'Kaprodi'){ ?>
 											<th width="170">Aksi</th>
 											<?php } ?>
@@ -82,6 +85,12 @@
 																  } 
 											?>
 											</td>
+											<?php if($this->session->userdata('jabatan') == 'Kajur'){ ?>
+											<td class="text-center">
+													<a href="<?= base_url(); ?>matkul/edit/<?= $m['id']; ?>" class="btn btn-sm btn-primary">Edit</a>
+													<a href="<?= base_url(); ?>matkul/hapus/<?= $m['id']; ?>" class="btn btn-sm btn-danger tombol-hapus">Hapus</a>
+											</td>
+											<?php } ?>
 											<?php if($this->session->userdata('jabatan') == 'Kaprodi'){ ?>
 											<td>
 													<!-- <a href="<?= base_url(); ?>matkul/edit/<?= $m['id']; ?>" class="btn btn-sm btn-primary">Edit</a> -->

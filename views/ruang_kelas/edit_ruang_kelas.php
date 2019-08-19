@@ -40,9 +40,19 @@
 										<label class="col-md-2 control-label">Nama :</label>
 										<div class="col-md-8"><input type="text" name="nama" title="Tooltip on focus" class="form-control bs-focus-tooltip" required="" value="<?= $ruang_kelas['nama']; ?>"></div>
 									</div>
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label class="col-md-2 control-label">Kelompok :</label>
 										<div class="col-md-8"><input type="text" name="kelompok" title="Tooltip on focus" class="form-control bs-focus-tooltip" required="" value="<?= $ruang_kelas['kelompok']; ?>"></div>
+									</div> -->
+									<div class="form-group">
+											<label class="col-md-2 control-label">Kelompok :</label>
+											<div class="col-md-8">
+													<select id="golongan" class="form-control" name="kelompok" required="" >
+														<option value="">-- Silahkan Pilih --</option>
+														<option value="1 - 12">1 - 12</option>
+														<option value="13 - 24">13 - 24</option>
+													</select>
+											</div>
 									</div>
 									
 									<div class="form-group">

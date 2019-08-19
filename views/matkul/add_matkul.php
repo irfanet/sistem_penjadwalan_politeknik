@@ -35,7 +35,7 @@
 							</div>
 							<div class="widget-content">
 								<form class="form-horizontal row-border" method="post">
-									<div class="form-group">
+									<!-- <div class="form-group">
 											<label class="col-md-2 control-label">Kelas :</label>
 											<div class="col-md-8">
 													<select class="form-control" name="kelas" required="">
@@ -45,7 +45,7 @@
 														<?php } ?>
 													</select>
 											</div>
-									</div>
+									</div> -->
 
 									<div class="form-group">
 											<label class="col-md-2 control-label">Nama Mata Kuliah :</label>
@@ -53,14 +53,25 @@
 											<small class="form-text text-danger"><?= form_error('nama');?></small>
 											</div>
 									</div>
+									<div class="form-group">
+											<label class="col-md-2 control-label">Prodi :</label>
+											<div class="col-md-8">
+													<select id="prodi" class="form-control" name="prodi" required="">
+														<option value="">-- Silahkan Pilih --</option>
+														<?php foreach($prodi as $p){ ?>
+															<option value="<?= $p['kode']; ?>"><?= $p['nama']; ?></option>
+														<?php } ?>
+													</select>
+											</div>
+									</div>
 
 									<div class="form-group">
-											<label class="col-md-2 control-label">Jenis Mata Kuliah :</label>
+											<label class="col-md-2 control-label">Status Mata Kuliah :</label>
 											<div class="col-md-8">
 													<select class="form-control" name="jenis_matkul" required="">
 														<option value="">-- Silahkan Pilih --</option>
-														<option value="1">Umum</option>
-														<option value="0">Biasa</option>
+														<option value="1">Ujian</option>
+														<option value="0">Tidak ada Ujian</option>
 													</select>
 											</div>
 									</div>

@@ -2,6 +2,8 @@
 
 class Pengawas_cadangan_model extends CI_Model
 {
+    private $semester;
+    private $tahun_ajaran;
 
     public function tampilAll($semester, $tahun_ajaran)
     {
@@ -34,4 +36,53 @@ class Pengawas_cadangan_model extends CI_Model
     {
         $this->db->insert_batch('pengawas_cadangan', $data);
     }
+
+    public function tambahData(){
+        $this->getSet();
+          $data = array(
+            //   'id' => $this->input->post('nama',TRUE),
+              'nidn' => $this->input->post('nidn',TRUE),
+              'nama_singkat' => $this->input->post('nama',TRUE),
+              'semester' => $this->semester,
+              'tahun_ajaran' => $this->tahun_ajaran
+          );
+  
+          $this->db->insert('pengawas_cadangan',$data);
+      }
+  
+      public function hapusData($id){
+          $this->db->where('id',$id);
+          $this->db->delete('pengawas_cadangan');
+      }
+  
+      public function getPengawasById($id){
+          return $this->db->query("select * from pengawas_cadangan where id='$id'")->row_array();
+      }
+  
+      public function editData(){
+        $this->getSet();
+          $data = array(
+                //   'id' => $this->input->post('nama',TRUE),
+                'nidn' => $this->input->post('nidn',TRUE),
+                'nama_singkat' => $this->input->post('nama',TRUE),
+                'semester' => $this->semester,
+                'tahun_ajaran' => $this->tahun_ajaran
+          );
+  
+          $this->db->where('id', $this->input->post('id'));
+          $this->db->update('pengawas_cadangan',$data);
+      }
+      public function getSet()
+      {
+          $this->load->model('setting_model');
+          $set = $this->setting_model->getSetting();
+          foreach($set as $hasil){
+            $semester = $hasil->semester;
+            $tahun_ajaran = $hasil->tahun_ajaran;
+          }
+          $this->semester = $semester;
+          $this->tahun_ajaran = $tahun_ajaran;
+          // return array('semester' => $semester, 'tahun_ajaran' => $tahun_ajaran);
+      
+      }
 }

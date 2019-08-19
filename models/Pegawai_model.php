@@ -18,7 +18,7 @@ Class Pegawai_model extends CI_Model{
     }
 
     public function tambahData(){
-        if($this->input->post('jabatan')!="Dosen" || $this->input->post('jabatan')!="Kaprodi"){
+        if($this->input->post('jabatan')=="Petugas" || $this->input->post('jabatan')=="Panitia"){
             $prodi = NULL;
         }else{
             $prodi = $this->input->post('prodi',TRUE);
@@ -29,6 +29,7 @@ Class Pegawai_model extends CI_Model{
             'nama_singkat' => $this->input->post('nama_singkat',TRUE),
             'nama_lengkap' => $this->input->post('nama_lengkap',TRUE),
             'jabatan' => $this->input->post('jabatan',TRUE),
+            'golongan' => $this->input->post('golongan',TRUE),
             'id_prodi' => $prodi,
             'email' => $this->input->post('email',TRUE),
             'password' => password_hash($this->input->post('password1'),PASSWORD_DEFAULT),
@@ -52,6 +53,7 @@ Class Pegawai_model extends CI_Model{
         $data = array(
             'id_prodi' => $this->input->post('prodi',TRUE),
             'jabatan' => $this->input->post('jabatan',TRUE),
+            'golongan' => $this->input->post('golongan',TRUE),
             'is_active' => $this->input->post('status',TRUE)
             
         );

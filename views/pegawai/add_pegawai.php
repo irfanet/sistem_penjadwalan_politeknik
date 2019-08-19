@@ -109,6 +109,16 @@
 											</div>
 									</div>
 
+									<div class="form-group">
+											<label class="col-md-2 control-label">Golongan :</label>
+											<div class="col-md-8">
+													<select id="golongan" class="form-control" name="golongan" required="" >
+														<option value="">-- Silahkan Pilih --</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+													</select>
+											</div>
+									</div>
 									
 
 									<div class="form-group">
@@ -130,7 +140,9 @@
 		<script>
 				document.getElementById("jabatan").onchange = function () {
 				document.getElementById("prodi").setAttribute("disabled", "disabled");
+				document.getElementById("golongan").setAttribute("disabled", "disabled");
 				if (this.value == 'Dosen' || this.value =='Kaprodi')
 					document.getElementById("prodi").removeAttribute("disabled");
+					document.getElementById("golongan").removeAttribute("disabled");
 				};
 		</script>

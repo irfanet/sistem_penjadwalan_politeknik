@@ -92,6 +92,7 @@ Class Soal_ujian_model extends CI_Model
         $this->db->delete('soal_ujian', array('id' => $id));
     }
     public function getMatkul(){
+        $this->getSet();    
         $nama=$this->session->userdata('nama');
         return $this->db->query("SELECT * FROM pengampu WHERE pengampu='$nama' 
         AND semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran'

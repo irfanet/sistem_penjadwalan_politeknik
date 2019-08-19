@@ -10,6 +10,7 @@ class Matkul extends CI_Controller {
         parent::__construct();
         $this->load->model('Matkul_model');
         $this->load->model('Setting_model');
+        $this->load->model('Prodi_model');
 
          //validasi jika user belum login
          if($this->session->userdata('nip') != TRUE){
@@ -54,6 +55,7 @@ class Matkul extends CI_Controller {
 
         // ('nama input','alias','rules')
         $this->form_validation->set_rules('nama', 'Nama Mata Kuliah', 'required');
+        $this->form_validation->set_rules('prodi', 'Prodi', 'required');
 
         if($this->form_validation->run() == FALSE){
             $this->load->view('templates/header',$data);
@@ -85,9 +87,11 @@ class Matkul extends CI_Controller {
       $this->load->model('Kelas_model');
       $data['kelas'] = $this->Kelas_model->tampilKelas();
       $data['set'] = $this->Setting_model->getSetting();
+      $data['prodi'] = $this->Prodi_model->tampilAllProdi();
 
       // ('nama input','alias','rules')
       $this->form_validation->set_rules('nama', 'Nama Mata Kuliah', 'required');
+      $this->form_validation->set_rules('prodi', 'Prodi', 'required');
 
       if($this->form_validation->run() == FALSE){
           $this->load->view('templates/header',$data);
@@ -133,6 +137,7 @@ class Matkul extends CI_Controller {
 
         $data['matkul1'] = ['1','0'];
         $data['matkul'] = $this->Matkul_model->getMatkulById($id);
+        $data['prodi'] = $this->Prodi_model->tampilAllProdi();
 
         // ('nama input','alias','rules')
         $this->form_validation->set_rules('nama', 'Nama Mata Kuliah', 'required');

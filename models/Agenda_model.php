@@ -7,6 +7,7 @@ class Agenda_model extends CI_Model {
          return $this->db->query("select * from agenda where semester='$semester' AND tahun_ajaran='$tahun_ajaran'");
     }
     public function getAgenda($tgl,$semester,$tahun_ajaran){
+        // SELECT * FROM agenda WHERE '2019-08-19' BETWEEN agenda.tgl AND COALESCE(agenda.tgl_akhir, NOW())
         return $this->db->query("SELECT * FROM agenda WHERE '$tgl' BETWEEN agenda.tgl AND agenda.tgl_akhir AND semester='$semester' AND tahun_ajaran='$tahun_ajaran'");
     }
     public function getAgenda2($tgl,$semester,$tahun_ajaran){
