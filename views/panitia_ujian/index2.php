@@ -106,8 +106,8 @@
 													<?php if ($this->session->userdata('jabatan') == 'Kajur' || $this->session->userdata('jabatan') == 'Kaprodi'){?>
 													<a href="<?= base_url(); ?>panitia_ujian/hapus/<?= $a['id']; ?>" class="tombol-hapus"><i class="icon-trash" style="float:right;"></i></a>
 													<a href="<?= base_url(); ?>panitia_ujian/edit/<?= $a['id']; ?>"><i class="icon-pencil" style="float:right;"></i></a><br>
-													<?php }?>
-												<?php } ?>
+													<?php }
+												 } ?>
 											</td>
 										</tr>
 										<tr>
@@ -123,7 +123,7 @@
 											<td>Anggota Seksi Naskah dan Pengepakan</td>
 											<td>
 												<?php $no=1; foreach($a2 as $aa){ ?>
-													<?= $no++; ?>. <?= $aa['nama']; ?>
+													<?= $no++; ?>. <?= $aa['nama_lengkap']; ?>
 													<?php if ($this->session->userdata('jabatan') == 'Kajur' || $this->session->userdata('jabatan') == 'Kaprodi'){?>
 													<a href="<?= base_url(); ?>panitia_ujian/hapus/<?= $aa['id']; ?>" class="tombol-hapus"><i class="icon-trash" style="float:right;"></i></a><a href="<?= base_url(); ?>panitia_ujian/edit/<?= $aa['id']; ?>"><i class="icon-pencil" style="float:right;"></i></a><br>
 												<?php }

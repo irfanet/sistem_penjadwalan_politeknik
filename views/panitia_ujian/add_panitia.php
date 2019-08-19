@@ -79,7 +79,7 @@
                                                         <option value="Pelaksana Administrasi">Pelaksana Administrasi</option>
                                                         <option value="Seksi Tempat">Seksi Tempat</option>
                                                         <option value="Koordinator Seksi Pelaksana dan Jadwal">Koordinator Seksi Pelaksana dan Jadwal</option>
-                                                        <option value="Anggota Seksi Pelaksana dan Jadwal">Sekretaris</option>
+                                                        <option value="Anggota Seksi Pelaksana dan Jadwal">Anggota Seksi Pelaksana dan Jadwal</option>
                                                         <option value="Koordinator Seksi Naskah dan Pengepakan">Koordinator Seksi Naskah dan Pengepakan</option>
                                                         <option value="Anggota Seksi Naskah dan Pengepakan">Anggota Seksi Naskah dan Pengepakan</option>
                                                         <option value="Pembantu Umum">Pembantu Umum</option>

@@ -153,3 +153,37 @@
 									?></p>
 									</div>
 					<?php }  ?>
+
+					<?php if (isset($import_makul)){?>
+						<a href="data_jurusan/matkul">
+						<div class="alert alert-warning fade in">
+							<?php echo $import_makul;?></p>
+						</div>
+						</a>
+					<?php } ?>
+					<?php if (isset($import_pengampu)){?>
+						<div class="alert alert-warning fade in">
+							<?php echo $import_pengampu;?></p>
+						</div>
+					<?php } ?>
+					<?php if (isset($import_pengawasCadangan)){?>
+						<div class="alert alert-warning fade in">
+							<?php echo $import_pengawasCadangan;?></p>
+						</div>
+					<?php } ?>
+					<?php if (isset($import_jadwal)){?>
+						<div class="alert alert-warning fade in">
+							<?php echo $import_jadwal;?></p>
+						</div>
+					<?php } ?>
+					<?php if (isset($notif_agenda)){?>
+						<div class="alert alert-warning fade in">
+							<?php echo $notif_agenda;?></p>
+						</div>
+					<?php } ?>
+					<?php if (isset($notif_panitia)){?>
+						<div class="alert alert-warning fade in">
+							<?php echo $notif_panitia;?></p>
+						</div>
+					<?php } ?>
+					

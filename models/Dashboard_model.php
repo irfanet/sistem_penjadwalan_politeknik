@@ -28,4 +28,24 @@ Class Dashboard_model extends CI_Model{
         // return array('semester' => $semester, 'tahun_ajaran' => $tahun_ajaran);
     
     }
+    public function notif_import_makul($semester,$tahun_ajaran)
+    {
+        return $this->db->query("Select * From matkul where semester='$semester' AND tahun_ajaran='$tahun_ajaran'");
+    }
+    public function notif_import_pengampu($semester,$tahun_ajaran)
+    {
+        return $this->db->query("Select * From pengampu where semester='$semester' AND tahun_ajaran='$tahun_ajaran'");
+    }
+    public function notif_import_pengawasCadangan($semester,$tahun_ajaran)
+    {
+        return $this->db->query("Select * From pengampu where semester='$semester' AND tahun_ajaran='$tahun_ajaran'");
+    }
+    public function notif_import_jadwal($semester,$tahun_ajaran)
+    {
+        return $this->db->query("Select * From jadwal where semester='$semester' AND tahun_ajaran='$tahun_ajaran'");
+    }
+    public function notif_agenda($semester,$tahun_ajaran)
+    {
+        return $this->db->query("Select * From agenda where semester='$semester' AND tahun_ajaran='$tahun_ajaran'");
+    }
 }
