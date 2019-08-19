@@ -57,7 +57,10 @@ class Dashboard extends CI_Controller {
         date_default_timezone_set('Asia/Jakarta');
         $tgl=strtotime(date('Y-m-d'));
         $tgl=date('Y-m-d',strtotime('today',$tgl));
-        $data['agenda']=$this->agenda_model->getAgenda($tgl)->result_array();
+        
+
+        $data['agenda']=$this->agenda_model->getAgenda($tgl,$this->semester,$this->tahun_ajaran)->result_array();
+        $data['agenda2']=$this->agenda_model->getAgenda2($tgl,$this->semester,$this->tahun_ajaran)->result_array();
 
         $data['jadwal_saya'] = $this->jadwal->countJadwal()->num_rows();
         $data['jadwal'] = $this->jadwal->countJadwalAll()->num_rows();
@@ -71,6 +74,24 @@ class Dashboard extends CI_Controller {
         $data['class'] = $this->Soal_ujian_model->get_notif_kelas();
         $data['soal'] = $this->Soal_ujian_model->tampilSoal2($this->semester,$this->tahun_ajaran,$this->session->userdata('id'));
         $data['notif'] = $this->Soal_ujian_model->get_notif();
+
+        $importPegawai = $this->dashboard_model->notif_import_pegawai()->num_rows();
+        if($importPegawai==0){
+            $data['import_pegawai'] = "<strong>Segera Import file CSV Data Pegawai !</strong>";
+        } 
+        $importKelas = $this->dashboard_model->notif_import_Kelas()->num_rows();
+        if($importKelas==0){
+            $data['import_kelas'] = "<strong>Segera Import file CSV Data Kelas !</strong>";
+        } 
+        $importRuangKelas = $this->dashboard_model->notif_import_ruangKelas()->num_rows();
+        if($importRuangKelas==0){
+            $data['import_ruangKelas'] = "<strong>Segera Import file CSV Data Ruang Kelas !</strong>";
+        } 
+        $importProdi = $this->dashboard_model->notif_import_prodi()->num_rows();
+        if($importProdi==0){
+            $data['import_prodi'] = "<strong>Segera Import file CSV Data Prodi !</strong>";
+        } 
+
 
         $importMakul = $this->dashboard_model->notif_import_makul($this->semester,$this->tahun_ajaran)->num_rows();
         if($importMakul==0){

@@ -28,6 +28,22 @@ Class Dashboard_model extends CI_Model{
         // return array('semester' => $semester, 'tahun_ajaran' => $tahun_ajaran);
     
     }
+    public function notif_import_pegawai()
+    {
+        return $this->db->query("Select * From pegawai where jabatan NOT IN ('Kajur') ");
+    }
+    public function notif_import_prodi()
+    {
+        return $this->db->query("Select * From prodi");
+    }
+    public function notif_import_kelas()
+    {
+        return $this->db->query("Select * From kelas");
+    }
+    public function notif_import_ruangKelas()
+    {
+        return $this->db->query("Select * From ruang_kelas");
+    }
     public function notif_import_makul($semester,$tahun_ajaran)
     {
         return $this->db->query("Select * From matkul where semester='$semester' AND tahun_ajaran='$tahun_ajaran'");

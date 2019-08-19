@@ -4,12 +4,14 @@
 class Agenda_model extends CI_Model {
     public function tampilAll($semester,$tahun_ajaran){
         // return $this->db->get('agenda');
-         return $this->db->query("select * from agenda where semester='Ganjil' AND tahun_ajaran='2019/2020'");
+         return $this->db->query("select * from agenda where semester='$semester' AND tahun_ajaran='$tahun_ajaran'");
     }
-    public function getAgenda($tgl){
-         return $this->db->query("select * from agenda where tgl='$tgl'");
+    public function getAgenda($tgl,$semester,$tahun_ajaran){
+        return $this->db->query("SELECT * FROM agenda WHERE '$tgl' BETWEEN agenda.tgl AND agenda.tgl_akhir AND semester='$semester' AND tahun_ajaran='$tahun_ajaran'");
     }
-
+    public function getAgenda2($tgl,$semester,$tahun_ajaran){
+        return $this->db->query("SELECT * FROM agenda WHERE tgl = '$tgl' AND tgl_akhir IS NULL AND semester='$semester' AND tahun_ajaran='$tahun_ajaran'");
+   }
     public function tambahData($kegiatan,$semester,$tahun_ajaran){
         $tgl = $this->input->post('tgl',TRUE);
         $date = str_replace('/', '-', $tgl );

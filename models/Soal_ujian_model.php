@@ -93,7 +93,9 @@ Class Soal_ujian_model extends CI_Model
     }
     public function getMatkul(){
         $nama=$this->session->userdata('nama');
-        return $this->db->query("SELECT * FROM pengampu WHERE pengampu='$nama' GROUP BY makul")->result();
+        return $this->db->query("SELECT * FROM pengampu WHERE pengampu='$nama' 
+        AND semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran'
+        GROUP BY makul")->result();
     }
     public function get_kelas($id){
         $this->getSet();
@@ -105,13 +107,19 @@ Class Soal_ujian_model extends CI_Model
         $this->getSet();
         $nama=$this->session->userdata('nama');
         return $this->db->query("SELECT * FROM pengampu WHERE kelas NOT IN 
-        (SELECT kelas FROM soal_ujian where semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran') AND pengampu='$nama' GROUP BY makul")->result();        
+        (SELECT kelas FROM soal_ujian where semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran') 
+        AND pengampu='$nama' 
+        AND semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran'
+        GROUP BY makul")->result();        
     }
     public function count_notif(){
         $this->getSet();
         $nama=$this->session->userdata('nama');
         return $this->db->query("SELECT * FROM pengampu WHERE kelas NOT IN 
-        (SELECT kelas FROM soal_ujian where semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran') AND pengampu='$nama' GROUP BY makul ");        
+        (SELECT kelas FROM soal_ujian where semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran') 
+        AND pengampu='$nama' 
+        AND semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran'
+        GROUP BY makul ");        
     }
     public function get_notif_kelas(){
         $this->getSet();
