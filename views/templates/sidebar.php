@@ -127,6 +127,12 @@
 						JADWAL UJIAN 
 					</a>
 				</li>
+				<li class="<?php echo $this->uri->segment(1) == 'rekapan_perhari' ? 'current': '' ?>">
+					<a href="<?= base_url(); ?>rekapan_perhari"> 
+						<i class="icon-paste"></i>
+						REKAPAN PERHARI 
+					</a>
+				</li>
 				<li class="<?php echo $this->uri->segment(1) == 'agenda' ? 'current': '' ?>">
 					<a href="<?= base_url(); ?>agenda">
 						<i class=" icon-bell"> </i>

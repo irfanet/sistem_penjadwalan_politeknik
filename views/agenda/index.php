@@ -70,7 +70,7 @@
 													<a href="<?= base_url(); ?>agenda/in_tambah/<?= $id; ?>"><i class="icon-pencil" style="float:right;"></i></a>
 												<?php }} ?>
 											</td>
-											<td align="center"><button class="btn btn-primary" >Ingatkan !</button></td>
+											<td align="center"><a href="<?=base_url();?>firestore"><button class="btn btn-primary" >Ingatkan !</button></a></td>
 										</tr>
 										<tr>
                                         <td align="center">2.</td>
