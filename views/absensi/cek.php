@@ -92,11 +92,21 @@
                                         <input type="submit">Simpan</button></td>
 									</tr> -->
 										<?php 
-											$penghasilan = 50000*$hadir;
-											$no--;	
-											?>
+											$gaji=50000;
+											// $golongan = $this->session->userdata('golongan');
+											if($golongan['golongan']==4){
+												$pajak = "15%";
+												$pocongan = 0.15*$gaji;
+												$penghasilan = ($gaji*$hadir)-($hadir*$pocongan);
+											}else{
+												$pajak = "5%";
+												$pocongan = 0.05*$gaji;
+												$penghasilan = ($gaji*$hadir)-($hadir*$pocongan);
+											}
+											$no--;		
+										?>
 										<tr>
-											<td colspan="5">Kehadiran <?= $hadir.' kali dari '.$no.' jadwal ('.$hadir.' * Rp. 50.000)'?></td>
+											<td colspan="5">Kehadiran <?= $golongan['golongan']. $hadir.' kali dari '.$no.' jadwal ('.$hadir.' * Rp. 50.000) - '.$pajak.' pajak'?></td>
 											<td><?='Rp.' .nominal($penghasilan);?></td>
 										</tr>
 									

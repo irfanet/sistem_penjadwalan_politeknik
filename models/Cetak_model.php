@@ -10,10 +10,15 @@ class Cetak_model extends CI_Model
     public $tahun_ajaran;
 
  
+    public function getGolonganByNama($nama){
+        return $this->db->query("select golongan from pegawai where nama_singkat='$nama'");
+    }
     public function prcekpengampudanjadwal()
     {
         $this->getSet();
-        $querydosen =  $this->db->query("SELECT * FROM `pengampu` where kunci NOT IN (select concat(makul,'-',kelas) as kunci from jadwal WHERE semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran')");
+        $querydosen =  $this->db->query("SELECT * FROM `pengampu` 
+        where kunci NOT IN (select concat(makul,'-',kelas) as kunci from jadwal WHERE semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran')
+        AND  semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran'");
         return $querydosen->result_array();
     }
     public function prjadwalperdosen()

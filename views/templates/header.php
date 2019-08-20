@@ -64,6 +64,15 @@
 	<script type="text/javascript" src="<?= base_url(); ?>assets/plugins/daterangepicker/moment.min.js"></script>
 	<script type="text/javascript" src="<?= base_url(); ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
 	<script type="text/javascript" src="<?= base_url(); ?>assets/plugins/blockui/jquery.blockUI.min.js"></script>
+<!-- 
+	<script type="text/javascript" src="plugins/daterangepicker/moment.min.js"></script>
+	<script type="text/javascript" src="plugins/daterangepicker/daterangepicker.js"></script>
+	<script type="text/javascript" src="plugins/blockui/jquery.blockUI.min.js"></script> -->
+
+	<!-- Pickers -->
+	<script type="text/javascript" src="<?= base_url(); ?>assets/plugins/pickadate/picker.js"></script>
+	<script type="text/javascript" src="<?= base_url(); ?>assets/plugins/pickadate/picker.date.js"></script>
+	<script type="text/javascript" src="<?= base_url(); ?>assets/plugins/pickadate/picker.time.js"></script>
 
 	<!-- Forms -->
 	<!-- <script type="text/javascript" src="<?= base_url(); ?>assets/plugins/uniform/jquery.uniform.min.js"></script> 

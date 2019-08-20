@@ -41,8 +41,8 @@
 									<div class="form-group">
 											<label class="col-md-2 control-label">Pegawai :</label>
 											<div class="col-md-8">
-													<select class="form-control" name="pegawai" required="">
-														<option value="">-- Silahkan Pilih --</option>
+													<select class="select2 col-md-12 full-width-fix" name="pegawai" required="">
+														<option value=" ">-- Silahkan Pilih --</option>
                                                         <?php foreach($pegawai as $pg){ ?>
                                                             <?php if($pg['id'] == $panitia['id_pegawai']): ?>
                                                                 <option value="<?= $pg['id']; ?>" selected><?= $pg['nama_lengkap']; ?></option>

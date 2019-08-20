@@ -32,8 +32,8 @@
             <td width="125" rowspan="4" align="center"><img src="<?= base_url();?>assets/img/polines2.png" width="97" height="101"></td>
             <td width="395" rowspan="4" align="center"><div class="style1">
               <p><strong>
-      PENGAWAS CADANGAN <br>UJIAN AKHIR SEMESTER<br>
-      TAHUN AKADEMIK 2018 - 2019
+      PENGAWAS CADANGAN <br>UJIAN <?= $ujian?> SEMESTER<br>
+      <?= $stat_tahun?>
               </strong></p>
               </div></td>
             <td width="71" height="33">No. FPM</td>

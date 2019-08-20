@@ -103,6 +103,8 @@ class Absensi extends CI_Controller {
         $data['nama_singkat'] = $nama_singkat;
         $data['querydosen'] = $this->cetak_model->prjadwalperdosen();
         $data['queryPerDosen'] = $this->cetak_model->jadwalperdosen();
+        $data['golongan'] = $this->cetak_model->getGolonganByNama($nama_singkat)->row_array();
+        // $data['golongan'] = $this->cetak_model->
 
         $this->load->view('templates/header',$data);
         $this->load->view('templates/topbar',$data);

@@ -24,7 +24,7 @@
             <td width="395" rowspan="4" align="center"><div class="style1">
               <p><strong>PENGAMBILAN DAN PENYERAHAN<br>
       BERKAS UJIAN OLEH PENGAWAS <br>
-      TAHUN AKADEMIK 2018 - 2019
+      <?= $stat_tahun?>
               </strong></p>
               </div></td>
             <td width="71" height="33">No. FPM</td>

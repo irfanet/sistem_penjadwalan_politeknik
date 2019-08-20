@@ -60,7 +60,6 @@
                                             <th>Kunci</th>
 											<th>Semester</th>
 											<th>Tahun Ajaran</th>
-											<!-- <th>Status</th> -->
 											<?php if($this->session->userdata('jabatan') == 'Kajur'){ ?>
 											<th width="170">Aksi</th>
 											<?php } ?>

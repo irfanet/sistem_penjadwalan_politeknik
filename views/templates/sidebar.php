@@ -130,7 +130,7 @@
 				</li>
 				<li class="<?php echo $this->uri->segment(1) == 'agenda' ? 'current': '' ?>">
 					<a href="<?= base_url(); ?>agenda">
-						<i class="icon-edit"></i>
+						<i class=" icon-bell"> </i>
 						AGENDA
 					</a>
 				</li>

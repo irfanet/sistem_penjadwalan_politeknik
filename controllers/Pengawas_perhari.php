@@ -3,15 +3,38 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
         
 class Pengawas_perhari extends CI_Controller {
+    private $stat_tahun;
+    private $semester;
+    private $tahun_ajaran;
     public function __construct(){
         parent::__construct();
         
         $this->load->model('Pengawas_perhari_model');
+        $this->load->model('setting_model');
 
         //validasi jika user belum login
         if($this->session->userdata('nip') != TRUE){
             redirect('auth');
         }
+
+        $this->load->model('setting_model');
+        $set = $this->setting_model->getSetting();
+        foreach($set as $hasil){
+          $semester = $hasil->semester;
+          $tahun_ajaran = $hasil->tahun_ajaran;
+        }
+        $this->tahun_ajaran = $tahun_ajaran;
+        $this->semester = $semester;
+
+        // if($semester=='Genap'){
+        //     $this->ujian = "AKHIR";
+        //     $this->stat = "SEMESTER GENAP";
+        // }else{
+        //     $this->ujian = "TENGAH";
+        //     $this->stat = "SEMESTER GANJIL";
+        // }
+        $tahun = str_replace("/"," - ",$tahun_ajaran);
+        $this->stat_tahun = "TAHUN AKADEMIK $tahun";
     }
     public function index()
     {
@@ -36,14 +59,16 @@ class Pengawas_perhari extends CI_Controller {
         $jenis = $post["keperluan"];
         $hariJamTes = $post["hariJamTes"];  
         $data['tinggiBaris'] = $tinggiBaris;
-        $this->load->model('setting_model');
-        $set = $this->setting_model->getSetting();
-        foreach($set as $hasil){
-          $semester = $hasil->semester;
-          $tahun_ajaran = $hasil->tahun_ajaran;
-        }
-        $data['semester']=$semester;
-        $data['tahun_ajaran']=$tahun_ajaran;
+        $data['stat_tahun'] = $this->stat_tahun;
+        // $this->load->model('setting_model');
+        // $set = $this->setting_model->getSetting();
+        // foreach($set as $hasil){
+        //   $semester = $hasil->semester;
+        //   $tahun_ajaran = $hasil->tahun_ajaran;
+        // }
+
+        $data['semester']=$this->semester;
+        $data['tahun_ajaran']=$this->tahun_ajaran;
         if($jenis=="pengawas"){
             $data['lHari'] = $this->Pengawas_perhari_model->filterPengawas();
             $alamat = 'pengawas_perhari/pengawas';
