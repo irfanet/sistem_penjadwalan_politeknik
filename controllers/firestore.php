@@ -28,7 +28,22 @@ class Firestore extends CI_Controller {
         'url' => 'sipet.newplbsfm.org/',
         ];         
         $firestore->collection('Rekap')->document('kilop')->set($data);
-        printf('Metu Notif COEG SESUK SIDANG.' . PHP_EOL);
+        $this->session->set_flashdata('flash','Notifikasi Berhasil dikirim');
+        
+        redirect('agenda');
+    }
+    public function rekapanPerhari(){
+        $firestore = new FirestoreClient([
+            'projectId' => 'sipetpolines-490a6',
+        ]);
+        $id = uniqid();
+        $data=[
+        'status' => $id,
+        'url' => 'sipet.newplbsfm.org/',
+        ];         
+        $firestore->collection('Rekap')->document('kilop')->set($data);
+        $this->session->set_flashdata('flash','Notifikasi Berhasil dikirim');
+        redirect('rekapan_perhari');
     }
     
 }

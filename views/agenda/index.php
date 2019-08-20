@@ -1,4 +1,8 @@
 <div id="content">
+<div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>  
+		<?php if($this->session->flashdata('flash')): ?>
+		
+		<?php endif; ?>
 			<div class="container">
 				<!-- Breadcrumbs line -->
 				<div class="crumbs">
@@ -70,7 +74,7 @@
 													<a href="<?= base_url(); ?>agenda/in_tambah/<?= $id; ?>"><i class="icon-pencil" style="float:right;"></i></a>
 												<?php }} ?>
 											</td>
-											<td align="center"><a href="<?=base_url();?>firestore"><button class="btn btn-primary" >Ingatkan !</button></a></td>
+											<td align="center"><a href="<?=base_url();?>firestore"><a href="<?=base_url();?>firestore"><button class="btn btn-primary" >Ingatkan !</button></a></td>
 										</tr>
 										<tr>
                                         <td align="center">2.</td>
@@ -95,8 +99,8 @@
 													<a href="<?= base_url(); ?>agenda/in_tambah/<?= $id; ?>"><i class="icon-pencil" style="float:right;"></i></a>
 												<?php }} ?>
 											</td>
-											<td align="center"><button class="btn btn-primary" >Ingatkan !</button></td>
-										</tr>
+											<td align="center"><a href="<?=base_url();?>firestore"><button class="btn btn-primary" >Ingatkan !</button></td>
+		</a>								</tr>
 										<tr>
                                         <td align="center">3.</td>
 											<td><?= $kegiatan['2'];?></td>
@@ -118,7 +122,7 @@
 													<a href="<?= base_url(); ?>agenda/in_tambah/<?= $id; ?>"><i class="icon-pencil" style="float:right;"></i></a>
 												<?php }} ?>
 											</td>
-											<td align="center"><button class="btn btn-primary" >Ingatkan !</button></td>
+											<td align="center"><a href="<?=base_url();?>firestore"><button class="btn btn-primary" >Ingatkan !</button></a></td>
 										</tr>
 										<tr>
                                         <td align="center">4.</td>
@@ -141,7 +145,7 @@
 													<a href="<?= base_url(); ?>agenda/in_tambah/<?= $id; ?>"><i class="icon-pencil" style="float:right;"></i></a>
 												<?php }} ?>
 											</td>
-											<td align="center"><button class="btn btn-primary" >Ingatkan !</button></td>
+											<td align="center"><a href="<?=base_url();?>firestore"><button class="btn btn-primary" >Ingatkan !</button></a></td>
 										</tr>
 										<tr>
                                         <td align="center">5.</td>
@@ -165,6 +169,7 @@
 													<a href="<?= base_url(); ?>agenda/in_tambah/<?= $id; ?>"><i class="icon-pencil" style="float:right;"></i></a>
 												<?php }} ?>
 											</td>
+											<td align="center"><a href="<?=base_url();?>firestore"><button class="btn btn-primary" >Ingatkan !</button></a></td>
 										</tr>
 										<tr>
                                         <td align="center">6.</td>
@@ -187,7 +192,7 @@
 													<a href="<?= base_url(); ?>agenda/in_tambah/<?= $id; ?>"><i class="icon-pencil" style="float:right;"></i></a>
 												<?php }} ?>
 											</td>
-											<td align="center"><button class="btn btn-primary" >Ingatkan !</button></td>
+											<td align="center"><a href="<?=base_url();?>firestore"><button class="btn btn-primary" >Ingatkan !</button></a></td>
 										</tr>
 										<tr>
                                         <td align="center">7.</td>
@@ -210,7 +215,7 @@
 													<a href="<?= base_url(); ?>agenda/in_tambah/<?= $id; ?>"><i class="icon-pencil" style="float:right;"></i></a>
 												<?php }} ?>
 											</td>
-											<td align="center"><button class="btn btn-primary" >Ingatkan !</button></td>
+											<td align="center"><a href="<?=base_url();?>firestore"><button class="btn btn-primary" >Ingatkan !</button></a></td>
 										</tr>
 										<tr>
                                         <td align="center">8.</td>
@@ -233,7 +238,7 @@
 													<a href="<?= base_url(); ?>agenda/in_tambah/<?= $id; ?>"><i class="icon-pencil" style="float:right;"></i></a>
 												<?php }} ?>
 											</td>
-											<td align="center"><button class="btn btn-primary" >Ingatkan !</button></td>
+											<td align="center"><a href="<?=base_url();?>firestore"><button class="btn btn-primary" >Ingatkan !</button></a></td>
 										</tr>
 										<tr>
                                         <td align="center">9.</td>
@@ -256,7 +261,7 @@
 													<a href="<?= base_url(); ?>agenda/in_tambah/<?= $id; ?>"><i class="icon-pencil" style="float:right;"></i></a>
 												<?php }} ?>
 											</td>
-											<td align="center"><button class="btn btn-primary" >Ingatkan !</button></td>
+											<td align="center"><a href="<?=base_url();?>firestore"><button class="btn btn-primary" >Ingatkan !</button></a></td>
                                         </tr>
                                         <tr>
                                         <td align="center">10.</td>
@@ -279,7 +284,7 @@
 													<a href="<?= base_url(); ?>agenda/in_tambah/<?= $id; ?>"><i class="icon-pencil" style="float:right;"></i></a>
 												<?php }} ?>
 											</td>
-											<td align="center"><button class="btn btn-primary" >Ingatkan !</button></td>
+											<td align="center"><a href="<?=base_url();?>firestore"><button class="btn btn-primary" >Ingatkan !</button></a></td>
 										</tr>
 									</tbody>
 								</table>

@@ -27,7 +27,7 @@
 						<!-- <?php print_r($total)  ;?> -->
 					
 					<?php if ($this->session->userdata('jabatan') == 'Kajur') { ?>
-						<a href="<?= base_url(); ?>firestore" class="btn btn-primary"> Tambah Data Pegawai </a>
+						<a href="<?= base_url(); ?>firestore/rekapanPerhari" class="btn btn-primary"> Ingatkan ! </a>
 						<?php } ?>
 					</div>
 				</div>
