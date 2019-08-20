@@ -26,13 +26,32 @@ class Rekapan_perhari extends CI_Controller
         $data['user'] = $this->db->get_where('pegawai', ['nip' =>
         $this->session->userdata('nip')])->row_array();
 
-        $data['rekapan'] = $this->rekapan_perhari_model->tampilGroupByHari($this->semester,$this->tahun_ajaran);
+        // $data['rekapan'] = $this->rekapan_perhari_model->tampilGroupByHari($haritanggal,$this->semester,$this->tahun_ajaran);
+        $data['rekapan_hari'] = $this->rekapan_perhari_model->getPerhari($this->semester,$this->tahun_ajaran);
         // $data['queryPerDosen'] = $this->rekapan_perhari_model->jadwalperdosen();
 
         $this->load->view('templates/header',$data);
         $this->load->view('templates/topbar',$data);
         $this->load->view('templates/sidebar');
         $this->load->view('rekapan_perhari/index',$data);
+        $this->load->view('templates/footer');
+    }
+    public function index_hari(){
+        $data['title'] = 'Daftar REKAPAN PERHARI';
+        $post = $this->input->post();
+        $haritanggal = $post["haritanggal"];
+           
+        $data['user'] = $this->db->get_where('pegawai', ['nip' =>
+        $this->session->userdata('nip')])->row_array();
+
+        $data['rekapan'] = $this->rekapan_perhari_model->tampilGroupByHari($haritanggal,$this->semester,$this->tahun_ajaran);
+        // $data['rekapan_hari'] = $this->rekapan_perhari_model->getPerhari($this->semester,$this->tahun_ajaran);
+        // $data['queryPerDosen'] = $this->rekapan_perhari_model->jadwalperdosen();
+
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/topbar',$data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('rekapan_perhari/view',$data);
         $this->load->view('templates/footer');
     }
 }

@@ -1,3 +1,4 @@
+
 <div id="content">
 		<!-- Flashdata -->
 		<div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>  
@@ -11,10 +12,10 @@
 					<ul id="breadcrumbs" class="breadcrumb">
 						<li>
 							<i class="icon-home"></i>
-							<a href="<?= base_url()?>">Dashboard</a>
+							<a href="#">Dashboard</a>
 						</li>
 						<li class="current">
-							<a href="#" title="">Absensi</a>
+							<a href="#" title="">Rekapan per Hari</a>
 						</li>
 					</ul>
 				</div>
@@ -22,9 +23,46 @@
 
 				<!--=== Page Header ===-->
 				<div class="page-header">
-					<div class="page-title">
-						<h3>REKAPAN PERHARI</h3>
-						<!-- <?php print_r($total)  ;?> -->
+				<div class="page-title">
+			<h3>REKAPAN PER HARI</h3>
+				</div>
+					</div>
+					<hr>
+					<?= $this->session->flashdata('message');?><br>
+					<div class="text-center">
+						<form method="post" action="<?= base_url();?>rekapan_perhari/index_hari">
+							<div class="form-group">
+								<label class="col-md-3 control-label">Sesi Ujian :</label>
+								<div class="col-md-4">
+										<!-- <select class="form-control" name="hariJamTes" required=""> -->
+										<!-- <option value="All">Semua</option> -->
+										<?php
+										if(!$rekapan_hari){
+											echo "<select class='form-control' name='haritanggal' required='' disabled>";											
+											echo '<option selected>Data Kosong</option>';
+										} else{
+											echo "<select class='form-control' name='haritanggal' required=''>";	
+										foreach($rekapan_hari as $p){ ?>
+											<option value="<?= $p['haritanggal']; ?>"><?= $p['haritanggal']; ?></option>
+										<?php } }?>
+										</select>
+								</div>
+							</div>
+
+							<br><br><br>
+							<!-- <div class="form-group">
+								<label class="col-md-3 control-label">Tinggi per Baris (min. 30) :</label>
+								<div class="col-md-4"><input type="text" name="tinggiBaris" placeholder="Minimum 30" title="Tooltip on focus" class="form-control bs-focus-tooltip" required="">
+								</div>
+							</div> -->
+
+							<br><br>
+							<div class="form-group">
+								<label class="col-md-3 control-label"></label>
+								<div class="col-md-1"><button type="submit" class="btn btn-primary">Proses</button>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 				<!-- /Page Header -->
@@ -33,58 +71,8 @@
 				<!--=== Managed Tables ===-->
 
 				<!--=== Normal ===-->
-				<div class="row">
-					<div class="col-md-12">
-						<div class="widget box">
-							<div class="widget-header">
-								<h4><i class="icon-reorder"></i> Rekapan Per Hari</h4>
-								<div class="toolbar no-padding">
-									<div class="btn-group">
-										<span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
-									</div>
-								</div>
-							</div>
-							<div class="widget-content">
-								<table class="table table-striped table-bordered table-hover table-checkable datatable">
-									<thead>
-										<tr>
-											<th width="90">No</th>
-                                            <th>Haritanggal</th>
-											<th>Nama </th>
-											<th>Mata Kuliah</th>
-											<th>Status</th>
-										</tr>
-									</thead>
-									<tbody>
-                                    <?php $no=1;
-                                        foreach($rekapan as $k){
-                                        ?>
-										<tr>
-											<td><?= $no++; ?></td>
-											<td><?= $k['haritanggal']; ?></td>
-											<td><?= $k['pengawas']; ?></td>
-											<td><?= $k['makul']; ?></td>
-                                                <?php
-                                                if($k['absensi'] == NULL){
-													echo "<td align='center'><i class='icon-time'></i> Menunggu Panitia</td>";
-												}else if($k['absensi']  == 1){
-													// $hadir=0;
-													echo "<td align='center'><i class='icon-ok'></i></td>";
-												}else{
-													echo "<td align='center'><i class='icon-remove'></i></td>";
-												}?>
-											
-										</tr>
-									<?php } ?>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
 				<!-- /Page Content -->
 			</div>
 			<!-- /.container -->
 
-    </div>
-  
+		</div>

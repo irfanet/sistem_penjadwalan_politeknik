@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 use Google\Cloud\Firestore\FirestoreClient;
 
 
-class firestore extends CI_Controller {
+class Firestore extends CI_Controller {
     
     public function __construct(){
         parent::__construct();
