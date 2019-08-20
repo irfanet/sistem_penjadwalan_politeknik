@@ -57,7 +57,8 @@
 											<label class="col-md-2 control-label">Jabatan :</label>
 											<div class="col-md-8">
 													<select id="jabatan" class="form-control" name="jabatan" required="">
-													<option value="" selected>-- Silahkan Pilih Kembali --</option>
+													<option value="<?= $pegawai['jabatan']?>">-- Silahkan Pilih Kembali  --</option>
+													<!-- <option value="<?= $pegawai['jabatan']?>" selected><?= $pegawai['jabatan']?></option> -->
 													<?php foreach($jabatan as $j): ?>
 														<?php if($j == $pegawai['jabatan']): ?>
 															<option value="<?= $j; ?>">
@@ -78,8 +79,8 @@
 									<div class="form-group">
 											<label class="col-md-2 control-label">Program Studi :</label>
 											<div class="col-md-8">
-													<select id="prodi" class="form-control" name="prodi" required="" <?php echo $disable?>>
-													
+													<select id="prodi" class="form-control" name="prodi" required="" >
+													<option value="">-- Silahkan Pilih --</option>
 													<?php foreach($prodi as $r){ ?>
                                                             <?php if($r['kode'] == $pegawai['id_prodi']): ?>
                                                                 <option value="<?= $r['kode']; ?>" selected><?= $r['nama']; ?></option>
@@ -98,7 +99,8 @@
 									<div class="form-group">
 											<label class="col-md-2 control-label">Golongan :</label>
 											<div class="col-md-8">
-													<select id="golongan" class="form-control"  name="golongan" required="" <?php echo $disable?>>
+													<select id="golongan" class="form-control"  name="golongan" required="" >
+													<option value="">-- Silahkan Pilih --</option>
 													<?php foreach($golongan as $j): ?>
 														<?php if($j == $pegawai['golongan']): ?>
 															<option value="<?= $j; ?>" selected>
@@ -131,25 +133,10 @@
 		</div>
 		<script>
 				document.getElementById("jabatan").onchange = function () {
-				document.getElementById("prodi").setAttribute("disabled", "disabled")
+				document.getElementById("prodi").setAttribute("disabled", "disabled"),
 				document.getElementById("golongan").setAttribute("disabled","disabled");
 				if (this.value == 'Dosen' || this.value =='Kaprodi')
-					document.getElementById("prodi").removeAttribute("disabled")
+					document.getElementById("prodi").removeAttribute("disabled"),
 					document.getElementById("golongan").removeAttribute("disabled")
 				};
-
-				// document.getElementById("jabatan").onchange = function () {
-				// document.getElementById("prodi").setAttribute("disabled", "disabled");
-				// document.getElementById("golongan").setAttribute("disabled","disabled");
-				// if (this.value == 'Dosen' || this.value =='Kaprodi')
-				// 	// document.getElementById("prodi").removeAttribute("disabled");
-				// 	document.getElementById("golongan").removeAttribute("disabled");
-				// };
-
-				// document.getElementById("jabatan").onchange = function () {
-				// document.getElementById("prodi").removeAttribute("disabled");
-				// if (this.value == 'Panitia' || this.value =='Petugas')
-				// 	document.getElementById("prodi").setAttribute("disabled","disabled");
-				// 	document.getElementById("golongan").setAttribute("disabled","disabled");
-				// };
 		</script>
