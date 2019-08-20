@@ -90,7 +90,7 @@
 										<label class="col-md-2 control-label">File Soal Ujian <span class="required">*</span></label>
 										<div class="col-md-8">
 											<input type="file" name="pdf" class="required" data-style="fileinput"  data-inputsize="medium" required="">
-											<p class="help-block">Pdf only (pdf/*)</p>
+											<p class="help-block">Pdf only (pdf/*) Max Size 1MB</p>
 											<label for="file1" class="has-error help-block" generated="true" style="display:none;"></label>
 										</div>
 									</div>
