@@ -149,6 +149,7 @@ class Soal_ujian extends CI_Controller {
 			if($upload_pdf){
                 $config['allowed_types'] = 'pdf';
                 $config['upload_path'] = './assets/upload/';
+                $config['max_size']     = '1024';
 
                 $this->load->library('upload', $config);
 
