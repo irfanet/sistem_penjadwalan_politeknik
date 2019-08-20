@@ -69,7 +69,7 @@
             <?= $this->session->flashdata('message');?>
 			<form method="post">
 				<!-- Title -->
-				<h3 class="form-title">Sign In to your Account</h3>
+				<h3 class="form-title"> Sign in to your Account</h3>
 
 				<!-- Error Message -->
 				<div class="alert fade in alert-danger" style="display: none;">
