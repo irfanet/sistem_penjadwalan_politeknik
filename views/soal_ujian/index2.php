@@ -76,10 +76,10 @@
 													}
 
 													if($tampung==0){
-														echo '<i class="icon-remove"></i>';
+														echo '<i class="icon-remove" style="color:red"></i>';
 													}
 													else{
-														echo '<i class="icon-ok"></i>';
+														echo '<i class="icon-ok" style="color:green"></i>';
 													}
 												?>
 											</td>
@@ -130,10 +130,10 @@
 											<td><?= $m['tahun_ajaran'] ?></td>
 											<td><a href="<?= base_url(); ?>soal_ujian/lakukan_download/<?= $m['soal']; ?>"><i class="icon-download-alt"></i>Soal</a></td>
 											<td class="text-center"><?php if($m['penggandaan']==0){
-													echo '<i class="icon-remove"></i>';
+													echo '<i class="icon-remove" style="color:red"></i>';
 												}
 												else{
-													echo '<i class="icon-ok"></i>';
+													echo '<i class="icon-ok" style="color:green"></i>';
 												}
 											 ?></td>
 											<td class="text-center">
