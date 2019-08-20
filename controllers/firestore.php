@@ -28,7 +28,7 @@ class Firestore extends CI_Controller {
         'url' => 'sipet.newplbsfm.org/',
         ];         
         $firestore->collection('Rekap')->document('kilop')->set($data);
-        printf('Added data to the lovelace document in the users collection.' . PHP_EOL);
+        printf('Metu Notif COEG SESUK SIDANG.' . PHP_EOL);
     }
     
 }
