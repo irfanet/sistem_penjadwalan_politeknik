@@ -22,12 +22,12 @@ class firestore extends CI_Controller {
         $firestore = new FirestoreClient([
             'projectId' => 'sipetpolines-490a6',
         ]);
+        $id = uniqid();
         $data=[
-        'tanggal' => 'ADAM',
-        'last' => 'Arda',
-        'born' => 1815
+        'status' => $id,
+        'url' => 'sipet.newplbsfm.org/',
         ];         
-        $docRef = $firestore->collection('Rekap')->add($data);
+        $firestore->collection('Rekap')->document('kilop')->set($data);
         printf('Added data to the lovelace document in the users collection.' . PHP_EOL);
     }
     
