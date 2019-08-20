@@ -57,8 +57,8 @@
 <body class="login">
     <!-- Logo -->
 	<div class="logo">
-		<img src="<?= base_url(); ?>assets/img/polines2.png" width="100" height="100" alt="logo" />
-		<strong>POLITEKNIK</strong> NEGERI
+		<img src="<?= base_url(); ?>assets/img/logo_polines.png" width="100" height="100" alt="logo" /> </br>
+		<strong>POLITEKNIK NEGERI SEMARANG</strong> 
 	</div>
 	<!-- /Logo -->
 
