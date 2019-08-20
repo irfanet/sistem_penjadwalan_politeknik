@@ -27,7 +27,7 @@ class firestore extends CI_Controller {
         'status' => $id,
         'url' => 'sipet.newplbsfm.org/',
         ];         
-        $docRef = $firestore->collection('Rekap')->document('kilop')->set($data);
+        $firestore->collection('Rekap')->document('kilop')->set($data);
         printf('Added data to the lovelace document in the users collection.' . PHP_EOL);
     }
     
