@@ -68,15 +68,14 @@
 
 			<!--=== Navigation ===-->
 			<ul id="nav">
-			<?php
-				if ($this->session->userdata('jabatan') != 'Mahasiswa' ) { ?>
+			
 				<li class="<?php echo $this->uri->segment(1) == 'dashboard' ? 'current': '' ?>">
 					<a href="<?= base_url(); ?>">
 						<i class="icon-dashboard"></i>
 						Dashboard
 					</a>
 				</li>
-				<?php }?>
+			
 				<?php
 				if ($this->session->userdata('jabatan') == 'Dosen' || $this->session->userdata('jabatan') == 'Kajur' || $this->session->userdata('jabatan') == 'Kaprodi' ) { ?>
 				<li class="<?php echo $this->uri->segment(1) == 'soal_ujian' ? 'current': '' ?>">
@@ -164,7 +163,7 @@
 				if ($this->session->userdata('jabatan') == 'Petugas') { ?>
 				<li class="<?php echo $this->uri->segment(1) == 'notifikasi' ? 'current': '' ?>">
 					<a href="<?= base_url(); ?>notifikasi">
-						<i class="icon-copy"></i>
+						<i class="icon-bell-alt"></i>
 						NOTIFIKASI
 					</a>
 				</li>

@@ -10,9 +10,10 @@ class Penggandaan extends CI_Controller {
 
         //validasi jika user belum login
         if($this->session->userdata('nip') != TRUE){
-            if($this->session->userdata('jabatan') != "Petugas"){
-                redirect('auth');
-            }
+            redirect('auth');
+        }
+        if($this->session->userdata('jabatan') != "Petugas"){
+            redirect('auth');
         }
     }
     public function index(){

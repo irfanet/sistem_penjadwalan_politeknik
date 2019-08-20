@@ -12,7 +12,6 @@ a:link{
 					<a href="<?= base_url() ?>">Dashboard</a>
 				</li>
 			</ul>
-
 			<ul class="crumb-buttons">
 				<li><a href="#" title=""><i class="icon-signal"></i><span>Statistik</span></a></li>
 				<li>
@@ -40,6 +39,7 @@ a:link{
 				<span>Selamat Datang , <?= $this->session->userdata('nama') ?> !</span>
 			</div>
 
+			<?php if ($this->session->userdata('jabatan')== "Kaprodi" || $this->session->userdata('jabatan')== "Kajur" || $this->session->userdata('jabatan')== "Dosen"){?>
 			<!-- Page Stats -->
 			<ul class="page-stats">
 				<li>
@@ -50,10 +50,11 @@ a:link{
 					<div id="sparkline-bar2" class="graph sparkline hidden-xs">20,15,8,50,20,40,20,30,20,15,30,20,25,20</div>
 				</li>
 			</ul>
+			<?php }?>
 			<!-- /Page Stats -->
 		</div>
 		<!-- /Page Header -->
-
+		<?php if ($this->session->userdata('jabatan')!= "Mahasiswa"){?>
 		<!--=== Page Content ===-->
 		<!--=== Statboxes ===-->
 		<div class="row row-bg">
@@ -111,6 +112,8 @@ a:link{
 			</div> <!-- /.col-md-3 -->
 		</div> <!-- /.row -->
 		<!-- /Statboxes -->
+
+			<?php } ?>
 
 
 		<!-- <?php

@@ -15,10 +15,9 @@ class Dashboard extends CI_Controller {
 
         //validasi jika user belum login
         if($this->session->userdata('nip') != TRUE){
-            if($this->session->userdata('nim') != TRUE){
+            if($this->session->userdata('jabatan') != "Mahasiswa"){
                 redirect('auth');
             }
-            redirect('auth');
         }
 
         $this->load->model('setting_model');
@@ -66,7 +65,18 @@ class Dashboard extends CI_Controller {
         $data['jadwal'] = $this->jadwal->countJadwalAll()->num_rows();
         $data['kelas'] = $this->jadwal->countKelas()->num_rows();
         $data['mapel'] = $this->jadwal->countMapel()->num_rows();
-        $data['honor'] = 50000*$hari;
+        $gaji = 50000;
+        $golongan = $this->session->userdata('golongan');
+											if($golongan==4){
+												$pajak = "15%";
+												$pocongan = 0.15*$gaji;
+												$penghasilan = ($gaji*$hari)-($hari*$pocongan);
+											}else{
+												$pajak = "5%";
+												$pocongan = 0.05*$gaji;
+												$penghasilan = ($gaji*$hari)-($hari*$pocongan);
+											}
+        $data['honor'] = $penghasilan;
         $data['asc'] = $this->dashboard_model->getData('ASC');
         $data['desc'] = $this->dashboard_model->getData('DESC');
 

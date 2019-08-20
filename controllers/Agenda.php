@@ -12,7 +12,9 @@ class Agenda extends CI_Controller {
         $this->load->model('agenda_model');
 
         if($this->session->userdata('nip') != TRUE){
-            redirect('auth');
+            if($this->session->userdata('jabatan') != "Mahasiswa"){
+                redirect('auth');
+            }
         }
 
         $this->load->model('setting_model');

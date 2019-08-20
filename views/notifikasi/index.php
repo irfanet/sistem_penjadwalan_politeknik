@@ -24,7 +24,6 @@
 				<div class="page-header">
 					<div class="page-title">
 						<h3>DAFTAR SOAL UJIAN</h3>
-						<a href="<?= base_url(); ?>soal_ujian/in_tambah" class="btn btn-primary" style="float:ceter;"> Tambah Data</a>
 					</div>
 				</div>
 				<!-- /Page Header -->

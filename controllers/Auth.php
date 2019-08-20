@@ -7,9 +7,11 @@ class Auth extends CI_Controller {
 	{
 		 //validasi jika user belum login
 		if($this->session->userdata('nip') == TRUE){
-			// if($this->session->userdata('jabatan') == "Mahasiswa"){
+			redirect('dashboard');
+		}else{
+			if($this->session->userdata('jabatan') == "Mahasiswa"){
 				redirect('dashboard');
-			// }
+			}
 		}
 		
 		$data['title'] = 'Login Page';
@@ -78,7 +80,7 @@ class Auth extends CI_Controller {
 						'jabatan' => 'Mahasiswa'
 					];
 					$this->session->set_userdata($data);
-					redirect('jadwal_ujian');
+					redirect('dashboard');
 					
 				}
 				else{

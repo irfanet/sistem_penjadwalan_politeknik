@@ -11,13 +11,10 @@ class Absensi extends CI_Controller {
 
         //validasi jika user belum login
         if($this->session->userdata('nip') != TRUE){
-            if($this->session->userdata('jabatan') != "Panitia"){
-                if($this->session->userdata('jabatan') != "Kajur"){
-                    if($this->session->userdata('jabatan') != "Kaprodi"){
-                        redirect('auth');
-                    }
-                }
-            }
+            redirect('auth');
+        }
+        if($this->session->userdata('jabatan') == "Dosen" || $this->session->userdata('jabatan') == "Mahasiswa" || $this->session->userdata('jabatan') == "Petugas"){
+            redirect('auth');
         }
     }
     public function index(){

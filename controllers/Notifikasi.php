@@ -10,9 +10,10 @@ class Notifikasi extends CI_Controller {
         parent::__construct();
         $this->load->model('soal_ujian_model');
         if($this->session->userdata('nip') != TRUE){
-            if($this->session->userdata('jabatan') != "Petugas"){
-                redirect('auth');
-            }
+            redirect('auth');
+        }
+        if($this->session->userdata('jabatan') != "Petugas"){
+            redirect('auth');
         }
         
     }
