@@ -54,7 +54,7 @@
 											<th>Program Studi</th>
 											<th>Jabatan</th>
                                             <!-- <th>Status</th> -->
-                                            <th>Aksi</th>
+                                            <!-- <th>Aksi</th> -->
 											<!-- <th>Digandakan</th> -->
 										</tr>
 									</thead>
@@ -85,7 +85,7 @@
 													}
 												?>
                                             </td> -->
-                                            <td align="center"><button class="btn btn-primary" >Ingatkan !</button></td>
+                                            <!-- <td align="center"><button class="btn btn-primary" >Ingatkan !</button></td> -->
 										</tr>
 									<?php } ?>
 									</tbody>
