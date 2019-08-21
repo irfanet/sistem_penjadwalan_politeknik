@@ -75,12 +75,6 @@
 						Dashboard
 					</a>
 				</li>
-				<li class="<?php echo $this->uri->segment(2) == 'matkul' ? 'current': '' ?>">
-							<a href="<?= base_url(); ?>data_jurusan/matkul">
-								<i class="icon-book"></i>
-								DAFTAR MATA KULIAH
-							</a>
-						</li>
 			
 				<?php
 				if ($this->session->userdata('jabatan') == 'Dosen' || $this->session->userdata('jabatan') == 'Kajur' || $this->session->userdata('jabatan') == 'Kaprodi' ) { ?>
@@ -139,6 +133,19 @@
 						REKAPAN PERHARI 
 					</a>
 				</li>
+				<li class="<?php echo $this->uri->segment(1) == 'agenda' ? 'current': '' ?>">
+					<a href="<?= base_url(); ?>agenda">
+						<i class=" icon-bell"> </i>
+						AGENDA
+					</a>
+				</li>
+
+				<li class="<?php echo $this->uri->segment(1) == 'panitia_ujian' ? 'current': '' ?>">
+					<a href="<?= base_url(); ?>panitia_ujian">
+						<i class="icon-edit"></i>
+						DAFTAR PANITIA UJIAN
+					</a>
+				</li>
 				<?php
 				if ($this->session->userdata('jabatan') == 'Panitia' || $this->session->userdata('jabatan') == 'Kajur' || $this->session->userdata('jabatan') == 'Kaprodi' ) { ?>
 				<li class="<?php echo $this->uri->segment(1) == 'absensi' ? 'current': '' ?>">
@@ -157,26 +164,7 @@
 						</span>
 					</a>
 				</li>
-				<li>
-							<a href="<?= base_url(); ?>cetak/honorPerDosen">
-								<i class="icon-money"></i>
-								HONOR PER DOSEN
-							</a>
-						</li>
 				<?php }?>
-				<li class="<?php echo $this->uri->segment(1) == 'agenda' ? 'current': '' ?>">
-					<a href="<?= base_url(); ?>agenda">
-						<i class=" icon-bell"> </i>
-						AGENDA
-					</a>
-				</li>
-
-				<li class="<?php echo $this->uri->segment(1) == 'panitia_ujian' ? 'current': '' ?>">
-					<a href="<?= base_url(); ?>panitia_ujian">
-						<i class="icon-edit"></i>
-						DAFTAR PANITIA UJIAN
-					</a>
-				</li>
 				<?php
 				if ($this->session->userdata('jabatan') == 'Petugas') { ?>
 				<li class="<?php echo $this->uri->segment(1) == 'notifikasi' ? 'current': '' ?>">
