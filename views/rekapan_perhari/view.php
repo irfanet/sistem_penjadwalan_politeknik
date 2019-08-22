@@ -56,7 +56,7 @@
                                             <th>Haritanggal</th>
 											<th>Nama </th>
 											<th>Mata Kuliah</th>
-											<th>Status</th>
+											<th><center><i class='icon-info-sign'></i></center></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -70,7 +70,7 @@
 											<td><?= $k['makul']; ?></td>
                                                 <?php
                                                 if($k['absensi'] == NULL){
-													echo "<td align='center'><i class='icon-time'></i> Menunggu Panitia</td>";
+													echo "<td align='center'><i class='icon-time'></i></td>";
 												}else if($k['absensi']  == 1){
 													// $hadir=0;
 													echo "<td align='center'><i class='icon-ok'></i></td>";
