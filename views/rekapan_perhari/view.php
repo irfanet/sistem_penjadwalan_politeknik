@@ -41,7 +41,9 @@
 					<div class="col-md-12">
 						<div class="widget box">
 							<div class="widget-header">
-								<h4><i class="icon-reorder"></i> Rekapan Per Hari</h4>
+								<tr>
+									<td><i class="icon-reorder"></i> Rekapan Per Hari</td>
+								</tr>
 								<div class="toolbar no-padding">
 									<div class="btn-group">
 										<span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
@@ -60,7 +62,7 @@
 										</tr>
 									</thead>
 									<tbody>
-                                    <?php $no=1;
+                                    <?php $berangkat=0; $mbolos=0; $null=0; $no=1;
                                         foreach($rekapan as $k){
                                         ?>
 										<tr>
@@ -70,11 +72,14 @@
 											<td><?= $k['makul']; ?></td>
                                                 <?php
                                                 if($k['absensi'] == NULL){
+													$null++;
 													echo "<td align='center'><i class='icon-time'></i></td>";
 												}else if($k['absensi']  == 1){
 													// $hadir=0;
+													$berangkat++;
 													echo "<td align='center'><i class='icon-ok'></i></td>";
 												}else{
+													$mbolos++;
 													echo "<td align='center'><i class='icon-remove'></i></td>";
 												}?>
 											
@@ -82,6 +87,20 @@
 									<?php } ?>
 									</tbody>
 								</table>
+								<table>
+				
+								<tr>
+									<td>Hadir</td><td>:</td><td><?= $berangkat?><br></td>
+								</tr>
+								<tr>
+									<td>Tidak hadir</td><td>:</td><td><?= $mbolos?><br></td>
+								</tr>
+								<tr>
+									<td>Menunggu Input</td><td>:</td><td><?= $null?><br></td>
+								</tr>
+								<tr>
+									<td>Jumlah</td><td>:</td><td><?= $berangkat?><br></td>
+								</tr>
 							</div>
 						</div>
 					</div>
