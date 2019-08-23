@@ -35,7 +35,7 @@
 								<h4><i class="icon-reorder"></i> Form Edits Soal Ujian</h4>
 							</div>
 							<div class="widget-content">
-								<form class="form-horizontal row-border" method="post" enctype="multipart/form-data">
+								<form class="form-horizontal row-border" method="post" action="<?= base_url();?>soal_ujian/edit/<?= $pdf['id']?>" enctype="multipart/form-data">
 								<input type="text" hidden="" name="id" value="<?= $pdf['id'];?>">
 								<input type="text" hidden="" name="penggandaan" value="<?= $pdf['penggandaan'];?>">
                                     <div class="form-group">
@@ -77,8 +77,8 @@
                                     <div class="form-group">
 										<label class="col-md-2 control-label">File Soal Ujian <span class="required">*</span></label>
 										<div class="col-md-8">
-											<p><?= $pdf['soal']; ?></p><input type="file" name="pdf" class="required" data-style="fileinput" multiple="multiple" data-inputsize="medium" required="">
-											<p class="help-block">Pdf only (pdf/*)</p>
+											<p><?= $pdf['soal']; ?></p><input type="file" name="pdf" accept=".doc, .docx, .pdf" class="required" data-style="fileinput" multiple="multiple" data-inputsize="medium" required="">
+											<p class="help-block">Word / Pdf (doc/docx/pdf) Max Size 1MB</p>
 											<label for="file1" class="has-error help-block" generated="true" style="display:none;"></label>
 										</div>
 									</div>

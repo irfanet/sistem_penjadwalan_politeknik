@@ -101,7 +101,10 @@ Class Soal_ujian_model extends CI_Model
     public function get_kelas($id){
         $this->getSet();
         $nama=$this->session->userdata('nama');
-        $hasil=$this->db->query("SELECT kelas FROM pengampu WHERE makul='$id' AND  pengampu='$nama' ");
+        // $hasil=$this->db->query("SELECT kelas FROM pengampu WHERE makul='$id' AND  pengampu='$nama' ");
+        $hasil=$this->db->query("SELECT kelas FROM pengampu WHERE makul='$id' AND pengampu='$nama'
+        AND semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran' 
+        AND kelas NOT IN(SELECT kelas FROM soal_ujian where semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran') ");
         return $hasil->result();
     }
     public function get_notif(){
@@ -126,7 +129,9 @@ Class Soal_ujian_model extends CI_Model
         $this->getSet();
         $nama=$this->session->userdata('nama');
         return $this->db->query("SELECT * FROM pengampu WHERE kelas NOT IN 
-        (SELECT kelas FROM soal_ujian where semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran') AND pengampu='$nama'")->result();          
+        (SELECT kelas FROM soal_ujian where semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran') 
+        AND semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran' 
+        AND pengampu='$nama'")->result();          
     }
     // public function get_notif_kelas2(){
     //     $nama=$this->session->userdata('nama');

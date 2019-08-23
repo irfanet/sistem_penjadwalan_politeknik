@@ -74,8 +74,8 @@
 											<th>Dosen</th>
 											<th>Mata Kuliah</th>
 											<th>Kelas</th>
-											<th>Semester</th>
-											<th>Tahun Ajaran</th>
+											<!-- <th>Semester</th> -->
+											<!-- <th>Tahun Ajaran</th> -->
 											<th>File</th>
 											<th>Penggandaan</th>
 											<th width="170">Aksi</th>
@@ -98,8 +98,8 @@
 											}
 										?> -->
 										</td>
-											<td><?= $m['semester'] ?></td>
-											<td><?= $m['tahun_ajaran'] ?></td>
+											<!-- <td><?= $m['semester'] ?></td> -->
+											<!-- <td><?= $m['tahun_ajaran'] ?></td> -->
 											<td><a href="<?= base_url(); ?>soal_ujian/lakukan_download/<?= $m['soal']; ?>"><i class="icon-download-alt"></i>Soal</a></td>
 											<td class="text-center"><?php if($m['penggandaan']==0){
 													echo '<i class="icon-remove"></i>';

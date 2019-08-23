@@ -40,8 +40,8 @@
                                     <div class="form-group">
 										<label class="col-md-2 control-label">Mata Kuliah :</label>
 										<div class="col-md-8">
-										<select id="makul" name="matkul" class="select2 col-md-12 full-width-fix">
-											<option value="0">-PILIH-</option>>
+										<select id="makul" name="matkul" class="select2 col-md-12 full-width-fix" required>
+											<option value="0" only>-PILIH-</option>>
 											<?php foreach($makul as $mapel){ ?>
 														<option value="<?= $mapel->makul?>"><?= $mapel->makul?></option>
 													<?php }?>
@@ -56,7 +56,7 @@
                                     <div class="form-group">
 										<label class="col-md-2 control-label">Kelas :</label>
 										<div class="col-md-8">
-										<select name="kelas[]" id="kelas" class="select2 col-md-12 full-width-fix" multiple >
+										<select name="kelas[]" id="kelas" class="select2 col-md-12 full-width-fix" multiple required >
                            					 <option>-PILIH-</option>
                         				</select>
 										<!-- <input type="text" name="kelas" title="Tooltip on focus" class="form-control bs-focus-tooltip" value="<?= set_value('kelas'); ?>" required="">
@@ -89,8 +89,8 @@
                                     <div class="form-group">
 										<label class="col-md-2 control-label">File Soal Ujian <span class="required">*</span></label>
 										<div class="col-md-8">
-											<input type="file" name="pdf" class="required" data-style="fileinput"  data-inputsize="medium" required="">
-											<p class="help-block">Pdf only (pdf/*) Max Size 1MB</p>
+											<input type="file" name="pdf" class="required" data-style="fileinput" accept=".doc, .docx, .pdf"  data-inputsize="medium" required="">
+											<p class="help-block">Word / Pdf (doc/docx/pdf) Max Size 1MB</p>
 											<label for="file1" class="has-error help-block" generated="true" style="display:none;"></label>
 										</div>
 									</div>
