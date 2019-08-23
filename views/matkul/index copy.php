@@ -67,7 +67,7 @@
 											<?php } ?>
 										</tr>
 									</thead>
-									<!-- <form method="post" action="<?= base_url()?>matkul/update"> -->
+									<form method="post" action="<?= base_url()?>matkul/update">
 									<tbody>
 									<?php $no=1; foreach($matkul as $m){ ?>
 										<tr>
@@ -92,23 +92,31 @@
 											</td>
 											<?php } ?>
 											<?php if($this->session->userdata('jabatan') == 'Kaprodi'){ ?>
-											<td align="center">
+											<td>
 													<!-- <a href="<?= base_url(); ?>matkul/edit/<?= $m['id']; ?>" class="btn btn-sm btn-primary">Edit</a> -->
 
-							
+												<input type="hidden" name="ID_makul[]" value="<?php echo $m['id'];?>">
                                                 <?php if ($m['status']==1){?>
-													<a href="<?= base_url()?>matkul/update/<?= $m['id']?>"><button class="btn btn-s btn-primary" ><i class="icon-ok"></i></button></a>
-													<a href="<?= base_url()?>matkul/undo/<?= $m['id']?>"><button class="btn btn-s"><i class="icon-remove"></i></button></a>
-												<?php } else{?>
-													<a href="<?= base_url()?>matkul/update/<?= $m['id']?>"><button class="btn btn-s" ><i class="icon-ok"></i></button></a>
-													<a href="<?= base_url()?>matkul/undo/<?= $m['id']?>"><button class="btn btn-s btn-primary"><i class="icon-remove"></i></button></a>
+                                                    <input type="radio" name="status[<?php print $m['id']; ?>]" value="1" checked> Ujian<br>
+                                                    <input type="radio" name="status[<?php print $m['id']; ?>]" value="0"> Tidak ada Ujian<br>
+                                                <?php } else{?>
+                                                    <input type="radio" name="status[<?php print $m['id']; ?>]" value="1"> Ujian<br>
+                                                    <input type="radio" name="status[<?php print $m['id']; ?>]" value="0" checked> Tidak ada Ujian<br>
                                                 <?php }?>
 													<!-- <a href="<?= base_url(); ?>matkul/hapus/<?= $m['id']; ?>" class="btn btn-sm btn-danger tombol-hapus">Hapus</a> -->
 											</td>
 											<?php } ?>
 										</tr>
 									<?php } ?>
-									
+									<?php if($this->session->userdata('jabatan') == 'Kaprodi'){ ?>
+									<tr>
+							
+										<td colspan="6"></td>
+										<td align="center">	<input class="btn btn-primary" type="submit" value="Simpan"></button></td>
+
+								</form></td>
+									</tr>
+									<?php }?>
 									</tbody>
 								
 								</table>

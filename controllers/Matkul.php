@@ -157,26 +157,39 @@ class Matkul extends CI_Controller {
             redirect('matkul');
         }
     }
-    public function update(){
+    public function update($id){
    
         // error_reporting(E_ALL ^ E_NOTICE);
-        $ID_att = $this->input->post('ID_makul');
-        $result = array();
-        foreach($ID_att AS $key => $val){
-            $result[] = array(
-            "id" => $ID_att[$key],
-            "status"  => $_POST['status'][$val]
-            );
-        }
-        $test = $this->db->update_batch('matkul', $result, 'id');
-        if($test){
-            $this->session->set_flashdata('flash','Matkul Berhasil Ditambahkan');
-            redirect('data_jurusan/matkul');    }
-            else{
-                print_r($result) ;   
-            echo "gagal di input";
-        }
+        // $ID_att = $this->input->post('ID_makul');
+        // $result = array();
+        // foreach($ID_att AS $key => $val){
+        //     $result[] = array(
+        //     "id" => $ID_att[$key],
+        //     "status"  => $_POST['status'][$val]
+        //     );
+        // }
+        // $test = $this->db->update_batch('matkul', $result, 'id');
+        // if($test){
+        //     $this->session->set_flashdata('flash','Matkul Berhasil Ditambahkan');
+        //     redirect('data_jurusan/matkul');    }
+        //     else{
+        //         print_r($result) ;   
+        //     echo "gagal di input";
+        // }
+        $data=array('status'=>1);
+        $this->db->where('id',$id);
+        $this->db->update('matkul',$data);
+        $this->session->set_flashdata('flash','Perubahan Berhasil disimpan');
+            redirect('data_jurusan/matkul');
 
+
+    }
+    public function undo($id){
+        $data=array('status'=>0);
+        $this->db->where('id',$id);
+        $this->db->update('matkul',$data);
+        $this->session->set_flashdata('flash','Perubahan Berhasil disimpan');
+            redirect('data_jurusan/matkul');
     }
     public function reset(){
         $this->getSet();

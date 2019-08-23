@@ -38,7 +38,7 @@
 					<div class="col-md-12">
 						<div class="widget box">
 							<div class="widget-header">
-								<h4><i class="icon-reorder"></i> DAFTAR SOAL UJIAN</h4>
+								<h4><i class="icon-reorder"></i> DAFTAR SOAL UJIAN MASUK</h4>
 								<div class="toolbar no-padding">
 									<div class="btn-group">
 										<span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
@@ -46,21 +46,21 @@
 								</div>
 							</div>
 							<div class="widget-content">
-								<table class="table table-striped table-bordered table-hover table-checkable">
+								<table class="table table-striped table-bordered table-hover table-checkable datatable">
 									<thead>
 										<tr>
 											<th width="90">No</th>
 											<th>Dosen</th>
 											<th>Mata Kuliah</th>
 											<th>Kelas</th>
-											<th>Semester</th>
-											<th>Tahun Ajaran</th>
+											<!-- <th>Semester</th>
+											<th>Tahun Ajaran</th> -->
 											<th>File</th>
 											<th>Status</th>
-											<th width="170">Aksi</th>
+											<th width="170">Penggandaan ?</th>
 										</tr>
                                     </thead>
-                                    <form method="post" action="<?= base_url()?>penggandaan/update">
+                                    <!-- <form method="post" action="<?= base_url()?>penggandaan/update"> -->
 									<tbody>
 									<?php $no=1; foreach($soal as $m){ ?>
 										<tr>
@@ -68,8 +68,8 @@
 											<td><?= $m['nama_singkat']; ?></td>
 											<td><?= $m['kelas'] ?></td>
 											<td><?= $m['matkul'] ?></td>
-											<td><?= $m['semester'] ?></td>
-											<td><?= $m['tahun_ajaran'] ?></td>
+											<!-- <td><?= $m['semester'] ?></td>
+											<td><?= $m['tahun_ajaran'] ?></td> -->
 											<td><a href="<?= base_url(); ?>soal_ujian/lakukan_download/<?= $m['soal']; ?>"><i class="icon-download-alt"></i>Soal</a></td>
 											<td align="center">                                                    
 												<?php if($m['penggandaan']==0){?>
@@ -78,28 +78,80 @@
 													<span class="label label-success">Sudah digandakan</span>
 												<?php }?>
 											</td>
-											<td>
-                                            <input type="hidden" name="ID_att[]" value="<?php echo $m['id'];?>">
-                                                <?php
-                                                    if($m['penggandaan']==1){?>
-                                                        <input type="radio" name="penggandaan[<?php print $m['id']; ?>]" value="1" checked><span class="btn-success"> Sudah digandakan</span><br>
-                                                        <input type="radio" name="penggandaan[<?php print $m['id']; ?>]" value="0"> Belum digandakan<br>
-                                                    <?php }else{?>
-                                                        <input type="radio" name="penggandaan[<?php print $m['id']; ?>]" value="1"> Sudah digandakan<br>
-                                                        <input type="radio" name="penggandaan[<?php print $m['id']; ?>]" value="0" checked><span class="btn-warning">  Belum digandakan</span><br>
-                                                    <?php }
-                                                
-                                                ?>
+											<td align="center">
+                                            <!-- <input type="hidden" name="ID_att[]" value="<?php echo $m['id'];?>"> -->
+											<a href="<?= base_url()?>penggandaan/update/<?= $m['id']?>"><button class="btn btn-s"><i class="icon-ok"></i></button>
 
 											</td>
 										</tr>
                                     <?php } ?>
-                                    <tr>
-                                        <!-- <td colspan="7"> </td> -->
-                                        <td colspan="9" align="right">
-                                            <input class="btn btn-primary" type="submit" value="Simpan"></button>
-                                        </td>
-                                    </tr>
+                                   
+                                    </tbody>
+                                    
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Page Content -->
+
+								<!--=== Page Content ===-->
+				<!--=== Managed Tables ===-->
+
+				<!--=== Normal ===-->
+				<!-- Row 2 -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="widget box">
+							<div class="widget-header">
+								<h4><i class="icon-reorder"></i> DAFTAR SOAL YANG SUDAH DIGANDAKAN</h4>
+								<div class="toolbar no-padding">
+									<div class="btn-group">
+										<span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+									</div>
+								</div>
+							</div>
+							<div class="widget-content">
+								<table class="table table-striped table-bordered table-hover table-checkable datatable">
+									<thead>
+										<tr>
+											<th width="90">No</th>
+											<th>Dosen</th>
+											<th>Mata Kuliah</th>
+											<th>Kelas</th>
+											<!-- <th>Semester</th>
+											<th>Tahun Ajaran</th> -->
+											<th>File</th>
+											<th>Status</th>
+											<th width="170">Undo </th>
+										</tr>
+                                    </thead>
+                                    <!-- <form method="post" action="<?= base_url()?>penggandaan/update"> -->
+									<tbody>
+									<?php $no=1; foreach($penggandaan as $m){ ?>
+										<tr>
+											<td><?= $no++; ?></td>
+											<td><?= $m['nama_singkat']; ?></td>
+											<td><?= $m['kelas'] ?></td>
+											<td><?= $m['matkul'] ?></td>
+											<!-- <td><?= $m['semester'] ?></td>
+											<td><?= $m['tahun_ajaran'] ?></td> -->
+											<td><a href="<?= base_url(); ?>soal_ujian/lakukan_download/<?= $m['soal']; ?>"><i class="icon-download-alt"></i>Soal</a></td>
+											<td align="center">                                                    
+												<?php if($m['penggandaan']==0){?>
+													<span class="label label-warning">Belum digandakan</span>
+												<?php } else {?>
+													<span class="label label-success">Sudah digandakan</span>
+												<?php }?>
+											</td>
+											<td align="center">
+                                            <!-- <input type="hidden" name="ID_att[]" value="<?php echo $m['id'];?>"> -->
+											<a href="<?= base_url()?>penggandaan/undo/<?= $m['id']?>"><button class="btn btn-s"><i class="icon-remove"></i></button>
+
+											</td>
+										</tr>
+                                    <?php } ?>
+                                   
                                     </tbody>
                                     
 								</table>
