@@ -90,7 +90,7 @@
 						DISTRIBUSI SOAL UJIAN
 						<span class="label label-info pull-right">
 							<?php 
-							if ($this->session->userdata('jabatan') == 'Dosen'){
+							if ($this->session->userdata('jabatan') == 'Dosen' || $this->session->userdata('jabatan') == 'Kaprodi' ){
 							$CI =& get_instance();
 							$CI->load->model('soal_ujian_model');
 							$total = $CI->soal_ujian_model->count_notif()->num_rows();

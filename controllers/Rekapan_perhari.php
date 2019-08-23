@@ -54,4 +54,30 @@ class Rekapan_perhari extends CI_Controller
         $this->load->view('rekapan_perhari/view',$data);
         $this->load->view('templates/footer');
     }
+    public function hitung_mbolos(){
+        $data['title'] = 'Hitung Absensi';
+        $post = $this->input->post();
+        $haritanggal = $post["haritanggal"];
+        $berangkat = 0;
+        $mbolos = 0;
+        $waiting = 0;
+        $rekapan = $this->rekapan_perhari_model->tampilGroupByHari($haritanggal,$this->semester,$this->tahun_ajaran); 
+        foreach($rekapan as $rek){
+            if($rek['status']==1){
+                $berangkat++;
+            }else if($rek['status']==NULL){
+                $waiting++;
+            }else{
+                $mbolos++;
+            }
+        }
+        $data['berangkat'] = $berangkat;
+        $data['mbolos'] = $mbolos;
+        $data['waiting'] = $waiting;   
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/topbar',$data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('................',$data);
+        $this->load->view('templates/footer');    
+    }
 }
