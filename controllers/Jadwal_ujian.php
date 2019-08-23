@@ -23,7 +23,7 @@ class Jadwal_ujian extends CI_Controller {
         $this->session->userdata('nip')])->row_array();
         $data['mine'] = 1;
 
-        if($this->session->userdata('jabatan')=="Mahasiswa"){
+        if($this->session->userdata('jabatan')=='Mahasiswa'){
             $kls = $this->session->userdata('kelas');
             $data['jadwal_ujian'] = $this->Jadwal_ujian_model->tampilJadwalKelas($kls);
         }else{
@@ -55,7 +55,7 @@ class Jadwal_ujian extends CI_Controller {
     public function getAll(){
         $data['title'] = 'Daftar Jadwal Ujian';
            
-        if($this->session->userdata('jabatan')=='mahasiswa'){
+        if($this->session->userdata('jabatan')=='Mahasiswa'){
             $data['jadwal_ujian'] = $this->Jadwal_ujian_model->tampilJadwalKelas($this->session->userdata('kelas'));
         }else{
             $data['jadwal_ujian'] = $this->Jadwal_ujian_model->tampilAll();

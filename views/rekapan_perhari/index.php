@@ -38,7 +38,7 @@
 										<!-- <option value="All">Semua</option> -->
 										<?php
 										if(!$rekapan_hari){
-											echo "<select class='form-control' name='haritanggal' required='' disabled>";											
+											echo "<select class='form-control' name='haritanggal' required disabled>";											
 											echo '<option selected>Data Kosong</option>';
 										} else{
 											echo "<select class='form-control' name='haritanggal' required=''>";	
