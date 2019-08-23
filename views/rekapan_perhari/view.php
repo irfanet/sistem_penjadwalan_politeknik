@@ -101,6 +101,7 @@
 								<tr>
 									<td>Jumlah</td><td>:</td><td><?= $berangkat?><br></td>
 								</tr>
+								</table>
 							</div>
 						</div>
 					</div>

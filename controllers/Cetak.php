@@ -126,6 +126,31 @@ class Cetak extends CI_Controller {
         $mpdf->WriteHTML($html);
         $mpdf->Output($nama_dokumen.".pdf" ,'I');
     }
+    public function cetakAmplop(){
+        $this->load->model('cetak_model');
+        $nama_dokumen = "Cetak Amplop";
+
+        $data['ujian'] = $this->ujian;
+        $data['stat'] = $this->stat;
+        $data['stat_tahun'] = $this->stat_tahun;
+
+        $data['queryHari'] = $this->Cetak_model->denahruang();
+
+        $mpdf = new \Mpdf\mPDF();
+        $mpdf->AddPage('L', // L - landscape, P - portrait
+                '', '', '', '',
+                30, // margin_left
+                30, // margin right
+                30, // margin top
+                30, // margin bottom
+                18, // margin header
+                12); // margin footer
+        $html = $this->load->view('cetak/amplop', $data, true);
+        $mpdf->WriteHTML($html);
+        //$this->mpdf->Output($file_name, 'D'); // download force
+        $mpdf->Output($nama_dokumen.".pdf", 'I'); // view in the explorer
+    
+    }
             
 }
         
