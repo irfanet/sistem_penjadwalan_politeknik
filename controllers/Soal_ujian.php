@@ -34,7 +34,11 @@ class Soal_ujian extends CI_Controller {
             $this->load->model('Pegawai_model');
             $data['pegawai'] = $this->Pegawai_model->tampilAllPegawai();
            
+            $data['belumUpload'] = $this->Soal_ujian_model->getNotUploadedYet()->result_array();
+            $data['jmlBelumUpload'] = $this->Soal_ujian_model->getNotUploadedYet()->num_rows();
 
+            $data['jmlSudahUpload'] = $this->Soal_ujian_model->getUploaded()->num_rows();
+            
             $data['cekk'] = $this->db->query("select id_pegawai from soal_ujian where semester='$semester' AND tahun_ajaran='$tahun_ajaran'")->result_array();
             $cekk =  $this->db->query("select id_pegawai from soal_ujian where semester='$semester' AND tahun_ajaran='$tahun_ajaran'")->result_array();
 

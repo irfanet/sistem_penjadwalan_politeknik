@@ -150,5 +150,22 @@ Class Soal_ujian_model extends CI_Model
         // return array('semester' => $semester, 'tahun_ajaran' => $tahun_ajaran);
     
     }
+    public function getNotUploadedYet(){
+        $this->getSet();
+        return $this->db->query("SELECT * FROM pegawai a 
+        INNER JOIN pengampu b ON a.nama_singkat=b.pengampu 
+        -- LEFT JOIN soal_ujian c ON a.id = c.id_pegawai
+        WHERE b.semester='$this->semester' AND b.tahun_ajaran='$this->tahun_ajaran'
+        AND (makul,kelas) NOT IN (SELECT matkul,kelas FROM soal_ujian WHERE semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran' )");
+
+    }
+    public function getUploaded(){
+        $this->getSet();
+        return $this->db->query("SELECT * FROM pegawai a 
+        INNER JOIN pengampu b ON a.nama_singkat=b.pengampu 
+        WHERE b.semester='$this->semester' AND b.tahun_ajaran='$this->tahun_ajaran'
+        AND (makul,kelas) IN (SELECT matkul,kelas FROM soal_ujian WHERE semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran' )");
+
+    }
 
 }

@@ -37,7 +37,7 @@
 					<div class="col-md-12">
 						<div class="widget box">
 							<div class="widget-header">
-								<h4><i class="icon-reorder"></i> DAFTAR DOSEN</h4>
+								<h4><i class="icon-reorder"></i>DAFTAR DOSEN BELUM UPLOAD SOAL</h4>
 								<div class="toolbar no-padding">
 									<div class="btn-group">
 										<span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
@@ -51,21 +51,23 @@
 											<th width="90">No</th>
 											<th>Nip</th>
 											<th>Nama</th>
-											<th>Program Studi</th>
+											<th>Mata Kuliah</th>
+											<th>Kelas</th>
 											<th>Jabatan</th>
-											<th>Status</th>
+											<!-- <th>Status</th> -->
 											<!-- <th>Digandakan</th> -->
 										</tr>
 									</thead>
 									<tbody>
-									<?php $no=1; foreach($pegawai as $n){ ?>
+									<?php $no=1; foreach($belumUpload as $n){ ?>
 										<tr>
 											<td><?= $no++; ?></td>
 											<td><?= $n['nip']; ?></td>
 											<td><?= $n['nama_singkat']; ?></td>
-											<td><?= $n['nama_prodi']; ?></td>
+											<td><?= $n['makul']; ?></td>
+											<td><?= $n['kelas']; ?></td>
 											<td><?= $n['jabatan']; ?></td>
-											<td class="text-center">
+											<!-- <td class="text-center">
 												<?php 
 													$id = $n['id'];
 													$tampung = 0;
@@ -82,11 +84,12 @@
 														echo '<i class="icon-ok" style="color:green"></i>';
 													}
 												?>
-											</td>
+											</td> -->
 										</tr>
 									<?php } ?>
 									</tbody>
 								</table>
+								<h4><?= $jmlBelumUpload?></h4>
 							</div>
 						</div>
 					</div>
@@ -97,7 +100,7 @@
 					<div class="col-md-12">
 						<div class="widget box">
 							<div class="widget-header">
-								<h4><i class="icon-reorder"></i> DAFTAR SOAL UJIAN</h4>
+								<h4><i class="icon-reorder"></i>DAFTAR DOSEN YANG SUDAH UPLOAD SOAL</h4>
 								<div class="toolbar no-padding">
 									<div class="btn-group">
 										<span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
@@ -124,8 +127,9 @@
 										<tr>
 											<td><?= $no++; ?></td>
 											<td><?= $m['nama_singkat']; ?></td>
-											<td><?= $m['kelas'] ?></td>
+											
 											<td><?= $m['matkul'] ?></td>
+											<td><?= $m['kelas'] ?></td>
 											<td><?= $m['semester'] ?></td>
 											<td><?= $m['tahun_ajaran'] ?></td>
 											<td><a href="<?= base_url(); ?>soal_ujian/lakukan_download/<?= $m['soal']; ?>"><i class="icon-download-alt"></i>Soal</a></td>
@@ -144,6 +148,8 @@
 									<?php } ?>
 									</tbody>
 								</table>
+								<h4><?= $jmlSudahUpload?></h4>
+								
 							</div>
 						</div>
 					</div>
