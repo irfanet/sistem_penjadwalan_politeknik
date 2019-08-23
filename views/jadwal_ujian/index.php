@@ -24,9 +24,9 @@
 				<div class="page-header">
 					<div class="page-title">
 						<h3>DAFTAR JADWAL UJIAN</h3>
-						<?php if($mine==0 && $this->session->userdata('jabatan') == 'Kajur'){ ?>
+						<?php if($mine==0 && ($this->session->userdata('jabatan') == 'Kajur' || $this->session->userdata('jabatan_panitia') == 'Kabid Jurusan')){ ?>
 						<!-- <a href="<?= base_url(); ?>jadwal_ujian/in_tambah/<?= $user['id_prodi']; ?>" class="btn btn-primary"> Tambah Data</a> -->
-						<a href="<?= base_url(); ?>jadwal_ujian/transfer_jadwal/" class="btn btn-primary"> Tambah Data</a>
+						<a href="<?= base_url(); ?>jadwal_ujian/transfer_jadwal/" class="btn btn-primary"> Import Jadwal</a>
 						<?php } ?>
 					</div>
 				</div>

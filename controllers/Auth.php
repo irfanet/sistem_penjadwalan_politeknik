@@ -51,19 +51,18 @@ class Auth extends CI_Controller {
 				// cek password
 				if(password_verify($password, $user['password'])){
 					if($panitia['jabatan']=='Kabid Jurusan'){
-						$jabatan = 'Kajur';
-					}else{
-						$jabatan = $user['jabatan'];
+						$jabatan = 'Kabid Jurusan';
 					}
 					$data= [
 						'nip' => $user['nip'],
 						'id' => $user['id'],
 						'id_prodi' => $user['id_prodi'],
-						'jabatan' => $jabatan,
+						'jabatan' => $user['jabatan'],
 						'golongan' => $user['golongan'],
 						'nama' => $user['nama_singkat'],
 						'nama_lengkap' => $user['nama_lengkap'],
-						'email' => $user['email']
+						'email' => $user['email'],
+						'jabatan_panitia' => $jabatan
 					];
 
 					$this->session->set_userdata($data);
