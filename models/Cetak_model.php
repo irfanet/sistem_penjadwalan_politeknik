@@ -127,8 +127,10 @@ class Cetak_model extends CI_Model
         INNER JOIN pengampu b ON CONCAT(a.makul,'-',a.kelas) =  b.kunci
         INNER JOIN pegawai c ON b.pengampu = c.nama_singkat
         INNER JOIN prodi d ON c.id_prodi = d.kode
+        INNER JOIN matkul e ON a.makul = e.makul 
         WHERE a.semester='$semester' AND a.tahun_ajaran='$tahun_ajaran' 
-        AND  b.semester='$semester' AND b.tahun_ajaran='$tahun_ajaran' 
+        AND  b.semester='$semester' AND b.tahun_ajaran='$tahun_ajaran'
+        AND e.status=1 
         AND haritanggal='$tgl'");
     }
 }
