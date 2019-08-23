@@ -122,6 +122,15 @@ class Cetak_model extends CI_Model
         AND a.pengawas='$dosen' AND a.absensi IS NULL order by a.id");
         return $sqlPerDosen;
     }
+    public function getAmplop($tgl,$semester,$tahun_ajaran){
+        return $this->db->query("SELECT *,CONCAT(a.makul,'-',a.kelas) as kunci FROM jadwal a
+        INNER JOIN pengampu b ON CONCAT(a.makul,'-',a.kelas) =  b.kunci
+        INNER JOIN pegawai c ON b.pengampu = c.nama_singkat
+        INNER JOIN prodi d ON c.id_prodi = d.kode
+        WHERE a.semester='$semester' AND a.tahun_ajaran='$tahun_ajaran' 
+        AND  b.semester='$semester' AND b.tahun_ajaran='$tahun_ajaran' 
+        AND haritanggal='$tgl'");
+    }
 }
                         
 /* End of file cetak.php */

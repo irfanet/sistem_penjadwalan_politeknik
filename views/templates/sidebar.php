@@ -272,6 +272,12 @@
 								FORM PENGAWAS PERHARI
 							</a>
 						</li>
+						<li class="<?php echo $this->uri->segment(2) == 'pengawas_perhari' ? 'current': '' ?>">
+							<a href="<?= base_url(); ?>cetak/indexAmplop">
+								<i class="icon-angle-right"></i>
+								AMPLOP UJIAN
+							</a>
+						</li>
 						<li>
 							<a href="<?= base_url(); ?>cetak/pengampudanjadwal">
 								<i class="icon-angle-right"></i>

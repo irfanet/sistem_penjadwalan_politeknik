@@ -33,7 +33,7 @@ class Cetak extends CI_Controller {
             $this->ujian = "AKHIR";
             $this->stat = "SEMESTER GENAP";
         }else{
-            $this->ujian = "TENGAH";
+            $this->ujian = "AKHIR";
             $this->stat = "SEMESTER GANJIL";
         }
         $tahun = str_replace("/"," - ",$tahun_ajaran);
@@ -126,32 +126,49 @@ class Cetak extends CI_Controller {
         $mpdf->WriteHTML($html);
         $mpdf->Output($nama_dokumen.".pdf" ,'I');
     }
+    public function indexAmplop(){
+        $data['title'] = 'Amplop Ujian';
+           
+        $data['user'] = $this->db->get_where('pegawai', ['nip' =>
+        $this->session->userdata('nip')])->row_array();
+
+        $this->load->model('cetak_model');
+        $this->load->model('Rekapan_perhari_model');
+        $data['perHari'] = $this->Rekapan_perhari_model->getPerhari($this->semester,$this->tahun_ajaran);
+        
+        // $data['queryHari'] = $this->Cetak_model->getAmplop($this->semester,$this->tahun_ajaran)->result_array();
+
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/topbar',$data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('cetak/index_amplop', $data);
+        $this->load->view('templates/footer');
+
+    }
     public function cetakAmplop(){
         $this->load->model('cetak_model');
-        $nama_dokumen = "Cetak Amplop";
+        $post = $this->input->post();
+        $haritanggal = $post["haritanggal"];
 
+        $nama_dokumen = "Cetak Amplop";
+        $data['nama_dokumen'] = $nama_dokumen;
         $data['ujian'] = $this->ujian;
         $data['stat'] = $this->stat;
         $data['stat_tahun'] = $this->stat_tahun;
 
-        $data['queryHari'] = $this->Cetak_model->denahruang();
+        
+        $data['queryHari'] = $this->Cetak_model->getAmplop($haritanggal,$this->semester,$this->tahun_ajaran)->result_array();
+        $html = $this->load->view('cetak/amplop', $data);
 
         $mpdf = new \Mpdf\mPDF();
-        $mpdf->AddPage('L', // L - landscape, P - portrait
-                '', '', '', '',
-                30, // margin_left
-                30, // margin right
-                30, // margin top
-                30, // margin bottom
-                18, // margin header
-                12); // margin footer
+        $mpdf->AddPage('L'); // margin footer
         $html = $this->load->view('cetak/amplop', $data, true);
         $mpdf->WriteHTML($html);
-        //$this->mpdf->Output($file_name, 'D'); // download force
         $mpdf->Output($nama_dokumen.".pdf", 'I'); // view in the explorer
-    
+
+        $data['queryHari'] = $this->Cetak_model->getAmplop($haritanggal,$this->semester,$this->tahun_ajaran)->result_array();
+        // $this->load->view('cetak/amplop', $data);
     }
-            
 }
         
     /* End of file  cetak.php */

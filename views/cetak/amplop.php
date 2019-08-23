@@ -21,7 +21,16 @@
       <html>
       <head>
       <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-      <title><?= $nama_dokumen?></title>
+      <title> </title>
+      <style>
+        .biru{
+          color : #249F9F;
+        }
+        .margin{
+          margin-left: 20px;
+        }
+
+      </style>
       </head>
 
       <body>
@@ -31,51 +40,91 @@
           <tr>
             <td width="125" align="center"><img src="<?= base_url();?>assets/img/logo_polines.png" width="97" height="101">
         <br>POLITKENIK<br>
-        NEGRERI SEMARANH</td>
+        NEGRERI SEMARANG</td>
             <td width="395" rowspan="2" align="center"><div class="style1">
               <h2><strong>
       PANITIA <br>
-      UJIAN <?= $ujian.' '.$stat?> <?= $stat_tahun?> <br>
+      UJIAN AKHIR <?=$stat?> <?= $stat_tahun?> <br>
       POLITKENIK NEGRERI SEMARANG
               </strong></h2>
               </div></td>
           </tr>
       </table>
       <br>  
-      <table width="533" height="49" border="0"  cellpadding="0" cellspacing="0" bordercolor="#000000" bgcolor="#FFFFFF">
+      <div align="right"><h1 class="biru"><?= $lineHari['kelompok']?></h1></div>
+      <div align="center">
+      <table width="1000">
         <tr>
-          <td width="100" height="" >Jurusan</td>
-          <td width="25" >:</td>
-        
-          <td width="300" >Teknik Elektro</td>
-          <td width="122" align="center">&nbsp;</td>
-        </tr>
-       
-        <tr>
-          <td height="" >Ruang</td>
-          <td >:</td>
-          <td ><?php echo $lineHari['nama']; ?></td>
-          <td >&nbsp;</td>
+          <td>MATA KULIAH </td>
+          <td>: <?= $lineHari['makul']?></td>
+          <td class="margin">PROGRAM STUDI</td>
+          <td>: <?= $lineHari['nama']?></td>
         </tr>
         <tr>
-          <td height="" >Kelompok</td>
-          <td >:</td>
-          <td ><?php echo $lineHari['kelompok']; ?></td>
-          <td >&nbsp;</td>
+          <td>PENGAMPU </td>
+          <td>: <?= $lineHari['pengampu']?></td>
+          <td class="margin">RUANG</td>
+          <td>: <?= $lineHari['ruang']?></td>
+        </tr>
+        <tr>
+          <td>KELAS </td>
+          <td>: <?= $lineHari['kelas']?></td>
+          <td class="margin">PUKUL </td>
+          <td>: <?= $lineHari['jam']?></td>
+        </tr>
+        <tr>
+          <td>HARI / TANGGAL </td>
+          <td>: <?= $lineHari['haritanggal']?></td>
+          <td class="margin">PENGAWAS </td>
+          <td>: 1. <?= $lineHari['pengawas']?> </td>
+        </tr>
+        <tr>
+          <td colspan="3"></td>
+          <td>  2. ....................</td>
+        </tr>
+       <br>
+       <br>
+       <br>
+        <tr>
+          <td>ISI </td>
+          <td>: </td>
+          <td>1. Soal
+          <td>: 12 Lembar
+        </tr>
+        <tr>
+          <td  rowspan="4"></td>
+          <td> </td>
+          <td>2. Lembar Jawab
+          <td>: 12 Lembar
+        </tr>
+        <tr>
+          <td> </td>
+          <td>3. Daftar Hadir
+          <td>: 1 Lembar
+        </tr>
+        <tr>
+          <td> </td>
+          <td>4. Daftar Nilai
+          <td>: 1 Lembar
+        </tr>
+        <tr>
+          <td> </td>
+          <td>4. Daftar Acara
+          <td>: 1 Lembar
         </tr>
       </table>
+      </div>
       <br>  
       <!-- <table width="687" border="1" cellpadding="0" cellspacing="0" bordercolor="#000000" bgcolor="#FFFFFF" style="font-family: Mono; font-size: 10pt; "> -->
-        <?php 
-        if($lineHari['kelompok']=='1 - 12'){?>
-            <img src="<?= base_url();?>assets/img/ruang_ujian/1-12.jpg">
-            
-        <?php } elseif($lineHari['kelompok']=='13 - 24'){ ?>
-            <img src="<?= base_url();?>assets/img/ruang_ujian/13-24.jpg">
-        <?php } else{
-            echo 'data tidak ditemukan , cek atribut kelompok pada tabel ruang kelas';
-        }?>
+    
       <!-- </table> -->
+    
+      <table>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
       <br>  
  
 <pagebreak />
