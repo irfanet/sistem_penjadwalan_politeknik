@@ -35,6 +35,14 @@ class Auth extends CI_Controller {
 		$user = $this->db->get_where('pegawai', ['email' => $email])->row_array();
 		$mhs = $this->db->get_where('mahasiswa', ['nim' => $email])->row_array();
 
+		$setting = $this->db->get('setting')->row_array();
+		$where_array = array(
+			'id_pegawai' =>$user['id'],
+			'semester'=>$setting['semester'],
+			'tahun_ajaran'=>$setting['tahun_ajaran']
+		);
+		$panitia = $this->db->get_where('panitia_ujian', $where_array)->row_array();
+
 		
 		// jika usernya ada
 		if($user || $mhs){
@@ -42,11 +50,16 @@ class Auth extends CI_Controller {
 			if($user['is_active']==1 || $mhs['is_active']==1){
 				// cek password
 				if(password_verify($password, $user['password'])){
+					if($panitia['jabatan']=='Kabid Jurusan'){
+						$jabatan = 'Kajur';
+					}else{
+						$jabatan = $user['jabatan'];
+					}
 					$data= [
 						'nip' => $user['nip'],
 						'id' => $user['id'],
 						'id_prodi' => $user['id_prodi'],
-						'jabatan' => $user['jabatan'],
+						'jabatan' => $jabatan,
 						'golongan' => $user['golongan'],
 						'nama' => $user['nama_singkat'],
 						'nama_lengkap' => $user['nama_lengkap'],
