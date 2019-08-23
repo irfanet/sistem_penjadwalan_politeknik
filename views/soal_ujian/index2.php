@@ -89,7 +89,12 @@
 									<?php } ?>
 									</tbody>
 								</table>
-								<h4><?= $jmlBelumUpload?></h4>
+								<table>
+									<tr>
+										<td><b>Jumlah</b></td>
+										<td>: <b><?= $no-1?></b></td>
+									</tr>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -148,7 +153,12 @@
 									<?php } ?>
 									</tbody>
 								</table>
-								<h4><?= $jmlSudahUpload?></h4>
+								<table>
+									<tr>
+										<td><b>Jumlah</b></td>
+										<td>: <b><?= $no-1?></b></td>
+									</tr>
+								</table>
 								
 							</div>
 						</div>
