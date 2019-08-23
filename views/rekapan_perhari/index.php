@@ -38,10 +38,10 @@
 										<!-- <option value="All">Semua</option> -->
 										<?php
 										if(!$rekapan_hari){
-											echo "<select class='form-control' name='haritanggal' required disabled>";											
+											echo "<select class='form-control' name='haritanggal' id='selek' required disabled>";											
 											echo '<option selected>Data Kosong</option>';
 										} else{
-											echo "<select class='form-control' name='haritanggal' required=''>";	
+											echo "<select class='form-control' name='haritanggal' required='' id='selek'>";	
 										foreach($rekapan_hari as $p){ ?>
 											<option value="<?= $p['haritanggal']; ?>"><?= $p['haritanggal']; ?></option>
 										<?php } }?>
@@ -59,7 +59,12 @@
 							<br><br>
 							<div class="form-group">
 								<label class="col-md-3 control-label"></label>
-								<div class="col-md-1"><button type="submit" class="btn btn-primary">Proses</button>
+								<?php
+									if(!$rekapan_hari){
+											echo "<div class='col-md-1'><button id='submit' type='submit' class='btn btn-primary' disabled>Proses</button>";
+										} else{
+											echo "<div class='col-md-1'><button id='submit' type='submit' class='btn btn-primary'>Proses</button>";
+										}?>
 								</div>
 							</div>
 						</form>

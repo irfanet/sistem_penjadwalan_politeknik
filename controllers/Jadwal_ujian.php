@@ -22,13 +22,7 @@ class Jadwal_ujian extends CI_Controller {
         $data['user'] = $this->db->get_where('pegawai', ['nip' =>
         $this->session->userdata('nip')])->row_array();
         $data['mine'] = 1;
-
-        if($this->session->userdata('jabatan')=='Mahasiswa'){
-            $kls = $this->session->userdata('kelas');
-            $data['jadwal_ujian'] = $this->Jadwal_ujian_model->tampilJadwalKelas($kls);
-        }else{
-            $data['jadwal_ujian'] = $this->Jadwal_ujian_model->tampilJadwalSaya();
-        }
+        $data['jadwal_ujian'] = $this->Jadwal_ujian_model->tampilJadwalSaya();
 
         $this->load->view('templates/header',$data);
         $this->load->view('templates/topbar',$data);
