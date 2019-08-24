@@ -72,11 +72,15 @@ class Cetak_model extends CI_Model
     }
     public function pengawascadanganperhari()
     {
+        $this->getSet();
         $sqlPerHari = $this->db->query("SELECT panitia.nama_singkat, nama_lengkap, id_prodi 
         from pengawas_cadangan panitia inner join pegawai dosen on panitia.nama_singkat=dosen.nama_singkat 
-        where panitia.nama_singkat NOT IN 
-        (SELECT distinct(pengawas) as nama_singkat, CONCAT(haritanggal,'+',jam) as kunci FROM jadwal inner join pengawas_cadangan on pengawas=nama_singkat 
-        inner join pegawai dosen on pengawas=dosen.nama_singkat) LIMIT 12");
+        where panitia.nama_singkat 
+        AND panitia.semester='$this->semester' AND panitia.tahun_ajaran='$this->tahun_ajaran'
+        NOT IN (SELECT distinct(pengawas) as nama_singkat, CONCAT(haritanggal,'+',jam) as kunci FROM jadwal inner join pengawas_cadangan on pengawas=nama_singkat 
+        inner join pegawai dosen on pengawas=dosen.nama_singkat 
+        where jadwal.semester='$this->semester' AND jadwal.tahun_ajaran='$this->tahun_ajaran'
+        AND pengawas_cadangan.semester='$this->semester' AND pengawas_cadangan.tahun_ajaran='$this->tahun_ajaran' ) LIMIT 12");
         return $sqlPerHari->result_array();
     }
 
