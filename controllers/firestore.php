@@ -70,8 +70,8 @@ class Firestore extends CI_Controller {
                 $mbolos++;
             }
         }
-        echo 'Hadir   :'.$berangkat.' | ';
-        echo 'Tidak hadir   :'.$mbolos.' | ';
-        echo 'Pending   :'.$waiting;
+        // echo 'Hadir   :'.$berangkat.' | ';
+        echo $mbolos;
+        // echo 'Pending   :'.$waiting;
     }
 }
