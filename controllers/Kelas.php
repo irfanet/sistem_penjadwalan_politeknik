@@ -179,6 +179,7 @@ class Kelas extends CI_Controller {
            
             $nama = $get[1]; 
             $prodi = $get[2]; 
+            $nama = str_replace(' ','',$nama);
 
             array_push($data, array(
                 'nama_kelas'=>$nama, 

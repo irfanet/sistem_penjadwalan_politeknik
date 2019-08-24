@@ -40,11 +40,22 @@ class Rekapan_perhari extends CI_Controller
         $data['title'] = 'Daftar REKAPAN PERHARI';
         $post = $this->input->post();
         $haritanggal = $post["haritanggal"];
+        $absen = $post["absen"];
+        if($absen=="all"){
+            $data['rekapan'] = $this->rekapan_perhari_model->tampilGroupByHari($haritanggal,$this->semester,$this->tahun_ajaran);
+        }else{
+            if($absen=='null'){
+                $data['rekapan'] = $this->rekapan_perhari_model->tampilGroupByHariNull($haritanggal,$this->semester,$this->tahun_ajaran);
+            }else{
+                $data['rekapan'] = $this->rekapan_perhari_model->tampilGroupByHariK($absen,$haritanggal,$this->semester,$this->tahun_ajaran);
+            }
+        }
+        $data['tgl'] = $this->rekapan_perhari_model->getTgl($haritanggal,$this->semester,$this->tahun_ajaran)->row_array();
            
         $data['user'] = $this->db->get_where('pegawai', ['nip' =>
         $this->session->userdata('nip')])->row_array();
 
-        $data['rekapan'] = $this->rekapan_perhari_model->tampilGroupByHari($haritanggal,$this->semester,$this->tahun_ajaran);
+        // $data['rekapan'] = $this->rekapan_perhari_model->tampilGroupByHari($haritanggal,$this->semester,$this->tahun_ajaran);
         // $data['rekapan_hari'] = $this->rekapan_perhari_model->getPerhari($this->semester,$this->tahun_ajaran);
         // $data['queryPerDosen'] = $this->rekapan_perhari_model->jadwalperdosen();
 

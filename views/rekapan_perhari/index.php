@@ -32,6 +32,19 @@
 					<div class="text-center">
 						<form method="post" action="<?= base_url();?>rekapan_perhari/index_hari">
 							<div class="form-group">
+								<label class="col-md-3 control-label">Kategori :</label>
+								<div class="col-md-4">
+										<select class="form-control" name="absen" required="">
+											<option value="">-- Silahkan Pilih --</option>
+											<option value="all">Semua</option>
+											<option value="1">Hadir</option>
+											<option value="0">Tidak Hadir</option>
+											<option value="null">Belum Absensi</option>
+										</select>
+								</div>
+							</div>
+							<br><br><br>
+							<div class="form-group">
 								<label class="col-md-3 control-label">Sesi Ujian :</label>
 								<div class="col-md-4">
 										<!-- <select class="form-control" name="hariJamTes" required=""> -->

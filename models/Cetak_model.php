@@ -173,6 +173,14 @@ class Cetak_model extends CI_Model
         return $this->db->query("SELECT * FROM soal_ujian 
         WHERE id_pegawai='$id' AND semester='$semester' AND tahun_ajaran='$tahun_ajaran'");
     }
+    public function jadwalPerProdi($prodi,$semester,$tahun_ajaran){
+        $this->db->select('*');
+        $this->db->from('jadwal');
+        $this->db->join('matkul', 'jadwal.makul = matkul.makul');
+        $this->db->where('jadwal.semester', $semester)->where('jadwal.tahun_ajaran', $tahun_ajaran)
+        ->where('matkul.semester', $semester)->where('matkul.tahun_ajaran', $tahun_ajaran)->where('matkul.status',1);
+        return $this->db->get()->result();
+    }
 }
                         
 /* End of file cetak.php */

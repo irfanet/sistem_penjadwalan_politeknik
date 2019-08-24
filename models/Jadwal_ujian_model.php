@@ -20,7 +20,8 @@ Class Jadwal_ujian_model extends CI_Model{
         $this->db->select('*');
         $this->db->from('jadwal');
         $this->db->join('matkul', 'jadwal.makul = matkul.makul');
-        $this->db->where('jadwal.semester', $semester)->where('jadwal.tahun_ajaran', $tahun_ajaran)->where('matkul.status',1);
+        $this->db->where('jadwal.semester', $semester)->where('jadwal.tahun_ajaran', $tahun_ajaran)
+        ->where('matkul.semester', $semester)->where('matkul.tahun_ajaran', $tahun_ajaran)->where('matkul.status',1);
         return $this->db->get()->result();
     }
     public function tampilJadwalSaya(){
@@ -33,7 +34,8 @@ Class Jadwal_ujian_model extends CI_Model{
         $this->db->select('*');
         $this->db->from('jadwal');
         $this->db->join('matkul', 'jadwal.makul = matkul.makul');
-        $this->db->where('jadwal.semester', $semester)->where('jadwal.tahun_ajaran', $tahun_ajaran)->where('matkul.status',1)->where('pengawas',$this->session->userdata('nama'));
+        $this->db->where('jadwal.semester', $semester)->where('jadwal.tahun_ajaran', $tahun_ajaran)
+        ->where('matkul.status',1)->where('matkul.semester', $semester)->where('matkul.tahun_ajaran', $tahun_ajaran)->where('pengawas',$this->session->userdata('nama'));
         return $this->db->get()->result();
         // $this->db->where('semester', $semester)->where('tahun_ajaran', $tahun_ajaran)->where('pengawas',$this->session->userdata('nama'));
         // return $this->db->get('jadwal')->result();
@@ -48,7 +50,9 @@ Class Jadwal_ujian_model extends CI_Model{
         $this->db->select('*');
         $this->db->from('jadwal');
         $this->db->join('matkul', 'jadwal.makul = matkul.makul');
-        $this->db->where('jadwal.semester', $semester)->where('jadwal.tahun_ajaran', $tahun_ajaran)->where('jadwal.kelas',$kls)->where('matkul.status',1);
+        $this->db->where('jadwal.semester', $semester)->where('jadwal.tahun_ajaran', $tahun_ajaran)
+        ->where('matkul.semester', $semester)->where('matkul.tahun_ajaran', $tahun_ajaran)
+        ->where('jadwal.kelas',$kls)->where('matkul.status',1);
         return $this->db->get()->result();
     }
 
@@ -62,7 +66,9 @@ Class Jadwal_ujian_model extends CI_Model{
         $this->db->select('*');
         $this->db->from('jadwal');
         $this->db->join('matkul', 'jadwal.makul = matkul.makul');
-        $this->db->where('jadwal.semester', $semester)->where('jadwal.tahun_ajaran', $tahun_ajaran)->where('matkul.status',1)->where('jadwal.pengawas',$this->session->userdata('nama'));
+        $this->db->where('jadwal.semester', $semester)->where('jadwal.tahun_ajaran', $tahun_ajaran)
+        ->where('matkul.semester', $semester)->where('matkul.tahun_ajaran', $tahun_ajaran)
+        ->where('matkul.status',1)->where('jadwal.pengawas',$this->session->userdata('nama'));
         return $this->db->get();
     }
     public function countJadwalAll(){
@@ -75,7 +81,8 @@ Class Jadwal_ujian_model extends CI_Model{
         $this->db->select('*');
         $this->db->from('jadwal');
         $this->db->join('matkul', 'jadwal.makul = matkul.makul');
-        $this->db->where('jadwal.semester', $semester)->where('jadwal.tahun_ajaran', $tahun_ajaran)->where('matkul.status',1);
+        $this->db->where('jadwal.semester', $semester)->where('jadwal.tahun_ajaran', $tahun_ajaran)
+        ->where('matkul.semester', $semester)->where('matkul.tahun_ajaran', $tahun_ajaran)->where('matkul.status',1);
         return $this->db->get();
     }
     public function countKelas(){
