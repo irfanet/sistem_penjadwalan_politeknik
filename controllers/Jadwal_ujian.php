@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Jadwal_ujian extends CI_Controller {
 
+
+    private $filename;
     public function __construct(){
         parent::__construct();
         
@@ -14,6 +16,15 @@ class Jadwal_ujian extends CI_Controller {
                 redirect('auth');
             }
         }
+
+        $this->load->model('setting_model');
+        $set = $this->setting_model->getSetting();
+        foreach($set as $hasil){
+          $semester = $hasil->semester;
+          $tahun_ajaran = $hasil->tahun_ajaran;
+        }
+        $tahun_ajaranNew = str_replace("/", "_", $tahun_ajaran);
+        $this->filename = "jadwal_(".$semester."_".$tahun_ajaranNew.")";
     }
 
     public function index(){
@@ -319,15 +330,64 @@ class Jadwal_ujian extends CI_Controller {
         }
     }
 
-  public function hapus($id){
+    public function hapus($id){
      //Jika bukan kajur, maka di redirect
 		if($this->session->userdata('jabatan') == 'Dosen'){
             redirect('jadwal_ujian');
 		}
 
-    $this->Jadwal_ujian_model->hapusData($id);
-    $this->session->set_flashdata('flash','Berhasil dihapus');
-    redirect('jadwal_ujian');
-  }
+        $this->Jadwal_ujian_model->hapusData($id);
+        $this->session->set_flashdata('flash','Berhasil dihapus');
+        redirect('jadwal_ujian');
+    }
+    public function export(){
+
+
+        include APPPATH.'libraries/PHPExcel/PHPExcel.php';    
+        $csv = new PHPExcel();
+
+        $csv->setActiveSheetIndex(0)->setCellValue('A1', "ID"); 
+        $csv->setActiveSheetIndex(0)->setCellValue('B1', "HARI / TANGGAL"); 
+        $csv->setActiveSheetIndex(0)->setCellValue('C1', "JAM"); 
+        $csv->setActiveSheetIndex(0)->setCellValue('D1', "MATA KULIAH"); 
+        $csv->setActiveSheetIndex(0)->setCellValue('E1', "PENGAWAS"); 
+        $csv->setActiveSheetIndex(0)->setCellValue('F1', "KELAS"); 
+        $csv->setActiveSheetIndex(0)->setCellValue('G1', "RUANG");
+        $csv->setActiveSheetIndex(0)->setCellValue('H1', "KELOMPOK");
+        $csv->setActiveSheetIndex(0)->setCellValue('I1', "SEMESTER");
+        $csv->setActiveSheetIndex(0)->setCellValue('J1', "TAHUN AJARAN"); 
+
+        // $hasil = $this->Pegawai_model->tampilAll();
+        $hasil = $this->Jadwal_ujian_model->exportJawal()->result_array();
+
+        $no = 1; 
+        $numrow = 2; 
+        foreach($hasil as $data){ 
+        $csv->setActiveSheetIndex()->setCellValue('A'.$numrow, $no);
+        $csv->setActiveSheetIndex()->setCellValue('B'.$numrow, $data['haritanggal']);
+        $csv->setActiveSheetIndex()->setCellValue('C'.$numrow, $data['jam']);
+        $csv->setActiveSheetIndex()->setCellValue('D'.$numrow, $data['makul']);
+        $csv->setActiveSheetIndex()->setCellValue('E'.$numrow, $data['pengawas']);
+        $csv->setActiveSheetIndex()->setCellValue('F'.$numrow, $data['kelas']); 
+        $csv->setActiveSheetIndex()->setCellValue('G'.$numrow, $data['ruang']);          
+        $csv->setActiveSheetIndex()->setCellValue('H'.$numrow, $data['kelompok']);          
+        $csv->setActiveSheetIndex()->setCellValue('I'.$numrow, $data['semester']);          
+        $csv->setActiveSheetIndex()->setCellValue('J'.$numrow, $data['tahun_ajaran']);          
+        $no++; 
+        $numrow++; 
+        }
+
+        $csv->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+
+        $csv->getActiveSheet(0)->setTitle("Laporan Data Transaksi");
+        $csv->setActiveSheetIndex(0);
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="'.$this->filename.'.csv"'); // Set nama file excel nya
+        header('Cache-Control: max-age=0');
+
+        $write = new PHPExcel_Writer_CSV($csv);
+        $write->setDelimiter(";")->save('php://output');
+    }
 
 }

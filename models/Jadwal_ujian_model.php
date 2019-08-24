@@ -24,6 +24,21 @@ Class Jadwal_ujian_model extends CI_Model{
         ->where('matkul.semester', $semester)->where('matkul.tahun_ajaran', $tahun_ajaran)->where('matkul.status',1);
         return $this->db->get()->result();
     }
+    public function exportJawal(){
+        $this->load->model('setting_model');
+        $set = $this->setting_model->getSetting();
+        foreach($set as $hasil){
+          $semester = $hasil->semester;
+          $tahun_ajaran = $hasil->tahun_ajaran;
+        }
+        return $this->db->query("SELECT * FROM jadwal a
+        inner join matkul b on a.makul=b.makul
+        inner join kelas c on a.kelas=c.nama_kelas
+        where b.status = 1
+        and a.semester='$semester' and a.tahun_ajaran='$tahun_ajaran'
+        and b.semester='$semester' and b.tahun_ajaran='$tahun_ajaran' 
+        order by c.id_prodi,a.id");
+    }
     public function tampilJadwalSaya(){
         $this->load->model('setting_model');
         $set = $this->setting_model->getSetting();
