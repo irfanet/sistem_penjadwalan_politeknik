@@ -28,6 +28,15 @@
 						<!-- <a href="<?= base_url(); ?>jadwal_ujian/in_tambah/<?= $user['id_prodi']; ?>" class="btn btn-primary"> Tambah Data</a> -->
 						<a href="<?= base_url(); ?>jadwal_ujian/transfer_jadwal/" class="btn btn-primary"> Import Jadwal</a>
 						<?php } ?>
+						<?php if($mine==0 && $this->session->userdata('jabatan') != 'Mahasiswa'){ ?>
+						<a href="<?= base_url(); ?>jadwal_ujian/formExport/" class="btn btn-primary"> Export Jadwal</a>
+						<?php } ?>
+						<?php if($mine==1){?>
+						<a href="<?= base_url(); ?>jadwal_ujian/export/" class="btn btn-primary"> Export Jadwal</a>
+						<?php } ?>
+						<?php if($this->session->userdata('jabatan')=='Mahasiswa'){?>
+						<a href="<?= base_url(); ?>jadwal_ujian/export/" class="btn btn-primary"> Export Jadwal</a>
+						<?php } ?>
 					</div>
 				</div>
 				<!-- /Page Header -->

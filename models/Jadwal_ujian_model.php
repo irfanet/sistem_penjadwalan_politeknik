@@ -25,19 +25,31 @@ Class Jadwal_ujian_model extends CI_Model{
         return $this->db->get()->result();
     }
     public function exportJawal(){
+        $post = $this->input->post();
+        $prodi = $post["prodi"];
         $this->load->model('setting_model');
         $set = $this->setting_model->getSetting();
         foreach($set as $hasil){
           $semester = $hasil->semester;
           $tahun_ajaran = $hasil->tahun_ajaran;
         }
-        return $this->db->query("SELECT * FROM jadwal a
-        inner join matkul b on a.makul=b.makul
-        inner join kelas c on a.kelas=c.nama_kelas
-        where b.status = 1
-        and a.semester='$semester' and a.tahun_ajaran='$tahun_ajaran'
-        and b.semester='$semester' and b.tahun_ajaran='$tahun_ajaran' 
-        order by c.id_prodi,a.id");
+        if($prodi=='all'){
+            return $this->db->query("SELECT * FROM jadwal a
+            inner join matkul b on a.makul=b.makul
+            inner join kelas c on a.kelas=c.nama_kelas
+            where b.status = 1
+            and a.semester='$semester' and a.tahun_ajaran='$tahun_ajaran'
+            and b.semester='$semester' and b.tahun_ajaran='$tahun_ajaran' 
+            order by c.id_prodi,a.id");
+        }else{
+            return $this->db->query("SELECT * FROM jadwal a
+            inner join matkul b on a.makul=b.makul
+            inner join kelas c on a.kelas=c.nama_kelas
+            where b.status = 1 and c.id_prodi='$prodi'
+            and a.semester='$semester' and a.tahun_ajaran='$tahun_ajaran'
+            and b.semester='$semester' and b.tahun_ajaran='$tahun_ajaran' 
+            order by c.id_prodi,a.id");    
+        }
     }
     public function tampilJadwalSaya(){
         $this->load->model('setting_model');
@@ -55,6 +67,23 @@ Class Jadwal_ujian_model extends CI_Model{
         // $this->db->where('semester', $semester)->where('tahun_ajaran', $tahun_ajaran)->where('pengawas',$this->session->userdata('nama'));
         // return $this->db->get('jadwal')->result();
     }
+    public function exportJawalSaya(){
+        $this->load->model('setting_model');
+        $set = $this->setting_model->getSetting();
+        foreach($set as $hasil){
+          $semester = $hasil->semester;
+          $tahun_ajaran = $hasil->tahun_ajaran;
+        }
+        $nama = $this->session->userdata('nama');
+        return $this->db->query("SELECT * FROM jadwal a
+        inner join matkul b on a.makul=b.makul
+        inner join kelas c on a.kelas=c.nama_kelas
+        where b.status = 1
+        and a.pengawas = '$nama'
+        and a.semester='$semester' and a.tahun_ajaran='$tahun_ajaran'
+        and b.semester='$semester' and b.tahun_ajaran='$tahun_ajaran' 
+        order by a.id");
+    }
     public function tampilJadwalKelas($kls){
         $this->load->model('setting_model');
         $set = $this->setting_model->getSetting();
@@ -69,6 +98,33 @@ Class Jadwal_ujian_model extends CI_Model{
         ->where('matkul.semester', $semester)->where('matkul.tahun_ajaran', $tahun_ajaran)
         ->where('jadwal.kelas',$kls)->where('matkul.status',1);
         return $this->db->get()->result();
+    }
+    public function exportJadwalKelas($kls){
+        $this->load->model('setting_model');
+        $set = $this->setting_model->getSetting();
+        foreach($set as $hasil){
+          $semester = $hasil->semester;
+          $tahun_ajaran = $hasil->tahun_ajaran;
+        }
+        return $this->db->query("SELECT * FROM jadwal a
+        inner join matkul b on a.makul=b.makul
+        inner join kelas c on a.kelas=c.nama_kelas
+        where b.status = 1
+        and a.kelas = '$kls'
+        and a.semester='$semester' and a.tahun_ajaran='$tahun_ajaran'
+        and b.semester='$semester' and b.tahun_ajaran='$tahun_ajaran' 
+        order by a.id");
+    }
+    public function getProdi(){
+        $this->load->model('setting_model');
+        $set = $this->setting_model->getSetting();
+        foreach($set as $hasil){
+          $semester = $hasil->semester;
+          $tahun_ajaran = $hasil->tahun_ajaran;
+        }
+        return $this->db->query("SELECT * FROM kelas a
+        inner join prodi b on a.id_prodi=b.kode
+        group by b.nama");
     }
 
     public function countJadwal(){

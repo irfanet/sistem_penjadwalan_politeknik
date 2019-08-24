@@ -340,9 +340,25 @@ class Jadwal_ujian extends CI_Controller {
         $this->session->set_flashdata('flash','Berhasil dihapus');
         redirect('jadwal_ujian');
     }
+    public function formExport(){
+        $data['title'] = 'Export Jadwal';
+           
+        $data['user'] = $this->db->get_where('pegawai', ['nip' =>
+        $this->session->userdata('nip')])->row_array();
+
+        $data['prodi'] = $this->Jadwal_ujian_model->getProdi()->result_array();
+
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/topbar',$data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('jadwal_ujian/export',$data);
+        $this->load->view('templates/footer');
+    }
     public function export(){
 
 
+        $post = $this->input->post();
+        $prodi = isset($post["prodi"]);
         include APPPATH.'libraries/PHPExcel/PHPExcel.php';    
         $csv = new PHPExcel();
 
@@ -357,8 +373,14 @@ class Jadwal_ujian extends CI_Controller {
         $csv->setActiveSheetIndex(0)->setCellValue('I1', "SEMESTER");
         $csv->setActiveSheetIndex(0)->setCellValue('J1', "TAHUN AJARAN"); 
 
-        // $hasil = $this->Pegawai_model->tampilAll();
-        $hasil = $this->Jadwal_ujian_model->exportJawal()->result_array();
+        if($this->session->userdata('jabatan')=='Mahasiswa'){
+            $hasil = $this->Jadwal_ujian_model->exportJadwalKelas($this->session->userdata('kelas'))->result_array();
+        }else if($prodi){
+            $hasil = $this->Jadwal_ujian_model->exportJawal()->result_array();
+        }else{
+            $hasil = $this->Jadwal_ujian_model->exportJawalSaya()->result_array();
+        }
+     
 
         $no = 1; 
         $numrow = 2; 
