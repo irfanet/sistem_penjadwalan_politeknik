@@ -51,6 +51,7 @@ class Rekapan_perhari extends CI_Controller
             }
         }
         $data['tgl'] = $this->rekapan_perhari_model->getTgl($haritanggal,$this->semester,$this->tahun_ajaran)->row_array();
+        $data['jml'] = $this->rekapan_perhari_model->getTgl($haritanggal,$this->semester,$this->tahun_ajaran)->num_rows();
            
         $data['user'] = $this->db->get_where('pegawai', ['nip' =>
         $this->session->userdata('nip')])->row_array();

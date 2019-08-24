@@ -99,7 +99,7 @@
 									<td><b>Menunggu Input</td><td><b>: <?= $null?><br></td>
 								</tr>
 								<tr>
-									<td><b>Jumlah</td><td><b>: <?= $no-1?><br></td>
+									<td><b>Jumlah</td><td><b>: <?= $jml?><br></td>
 								</tr>
 								</table>
 							</div>
