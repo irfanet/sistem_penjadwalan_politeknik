@@ -106,10 +106,7 @@ class Cetak extends CI_Controller {
 
         $data['querydosen'] = $this->Cetak_model->prjadwalperdosen();
         $data['queryPerDosen'] = $this->Cetak_model->jadwalperdosen();
-        $dosen =  $this->Cetak_model->prjadwalperdosen();
-        $data['soal'] =  $this->Cetak_model->honorPembuatanSoal($this->semester,$this->tahun_ajaran)->result_array();
-        $soal =  $this->Cetak_model->honorPembuatanSoal($this->semester,$this->tahun_ajaran)->result_array();
-        
+        $dosen =  $this->Cetak_model->prjadwalperdosen(); 
         foreach($dosen as $d){
             $id = $d['id'];
             $makul[$id] = $this->Cetak_model->cekSoal($id,$this->semester,$this->tahun_ajaran)->num_rows();
@@ -180,15 +177,7 @@ class Cetak extends CI_Controller {
         $data['queryHari'] = $this->Cetak_model->getAmplop($haritanggal,$this->semester,$this->tahun_ajaran)->result_array();
         // $this->load->view('cetak/amplop', $data);
     }
-    public function honorPembuatanSoal(){
-        // $makul = $this->Cetak_model->honorPembuatanSoal($this->semester,$this->tahun_ajaran)->result_array();
-        $soal = $this->Cetak_model->honorPembuatanSoal($this->semester,$this->tahun_ajaran)->result_array();
-        $makul = $this->Cetak_model->cekMakul($this->semester,$this->tahun_ajaran)->result_array();
-        foreach($soal as $s){
-            
-        }
-        
-    }
+    
 }
         
     /* End of file  cetak.php */

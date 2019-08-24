@@ -47,6 +47,8 @@ class Dashboard extends CI_Controller {
         $hari = 0;
         $this->load->model('jadwal_ujian_model','jadwal');
         $this->load->model('Soal_ujian_model');
+        $this->load->model('Cetak_model');
+        $id = $this->session->userdata('id');
         $jadwal = $this->jadwal->tampilJadwalSaya();
         foreach($jadwal as $jdwl){
             if($jdwl->absensi==1){
@@ -65,18 +67,31 @@ class Dashboard extends CI_Controller {
         $data['jadwal'] = $this->jadwal->countJadwalAll()->num_rows();
         $data['kelas'] = $this->jadwal->countKelas()->num_rows();
         $data['mapel'] = $this->jadwal->countMapel()->num_rows();
+
+        
         $gaji = 50000;
         $golongan = $this->session->userdata('golongan');
 											if($golongan==4){
-												$pajak = "15%";
+                                                $pajak = "15%";
+                                                $potongan = 0.15;
 												$pocongan = 0.15*$gaji;
 												$penghasilan = ($gaji*$hari)-($hari*$pocongan);
 											}else{
-												$pajak = "5%";
+                                                $pajak = "5%";
+                                                $potongan = 0.05;
 												$pocongan = 0.05*$gaji;
 												$penghasilan = ($gaji*$hari)-($hari*$pocongan);
-											}
-        $data['honor'] = $penghasilan;
+                                            }
+        $makul = $this->Cetak_model->cekSoal($id,$this->semester,$this->tahun_ajaran)->num_rows();
+        $kelas = $this->Cetak_model->cekKelas($id,$this->semester,$this->tahun_ajaran)->num_rows();
+        $gajiSoal = 82000;
+        $gajiKoreksi = 2000;
+        $honorSoal = $gajiSoal*$makul;
+        $honorKoreksi = $gajiKoreksi*$kelas*24;
+        $totalKotor = $honorSoal+$honorKoreksi;
+        $totalBersih = $totalKotor - ($totalKotor*$potongan);
+
+        $data['honor'] = $totalBersih+$penghasilan;
         $data['asc'] = $this->dashboard_model->getData('ASC');
         $data['desc'] = $this->dashboard_model->getData('DESC');
 
