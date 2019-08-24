@@ -25,10 +25,10 @@ class Matkul extends CI_Controller {
         $data['user'] = $this->db->get_where('pegawai', ['nip' =>
 		$this->session->userdata('nip')])->row_array();
         
-        if($this->session->userdata('jabatan')=='Kaprodi' || $this->session->userdata('jabatan')=='Dosen'){
-            $data['matkul'] = $this->Matkul_model->tampilMatkul($this->session->userdata('id_prodi'));
-        }else{
+        if($this->session->userdata('jabatan')=='Kajur'){
             $data['matkul'] = $this->Matkul_model->tampilAllMatkul();
+        }else{
+            $data['matkul'] = $this->Matkul_model->tampilMatkul($this->session->userdata('id_prodi'));
         }
 
 		$this->load->view('templates/header',$data);

@@ -39,6 +39,10 @@ Class Soal_ujian_model extends CI_Model
         // $this->db->insert('soal_ujian',$data);
     }
 
+    public function tampilSoalSemua($semester,$tahun_ajaran){
+        return $this->db->query("select *,a.id, a.kelas, a.matkul, a.semester, a.tahun_ajaran, a.soal, b.nama_singkat from soal_ujian a left join
+                                     pegawai b on a.id_pegawai=b.id where semester='$semester' AND tahun_ajaran='$tahun_ajaran' order by a.id desc")->result_array();
+     }
     public function tampilSoal($semester,$tahun_ajaran){
        return $this->db->query("select *,a.id, a.kelas, a.matkul, a.semester, a.tahun_ajaran, a.soal, b.nama_singkat from soal_ujian a left join
                                     pegawai b on a.id_pegawai=b.id where semester='$semester' AND tahun_ajaran='$tahun_ajaran' and penggandaan=0 order by a.id desc")->result_array();

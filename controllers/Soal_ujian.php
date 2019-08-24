@@ -29,7 +29,7 @@ class Soal_ujian extends CI_Controller {
 
         if($this->session->userdata('jabatan')=='Kajur'){
             
-            $data['soal'] = $this->Soal_ujian_model->tampilSoal($semester,$tahun_ajaran);
+            $data['soal'] = $this->Soal_ujian_model->tampilSoalSemua($semester,$tahun_ajaran);
 
             $this->load->model('Pegawai_model');
             $data['pegawai'] = $this->Pegawai_model->tampilAllPegawai();
