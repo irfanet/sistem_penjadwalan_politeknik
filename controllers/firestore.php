@@ -45,5 +45,8 @@ class Firestore extends CI_Controller {
         $this->session->set_flashdata('flash','Notifikasi Berhasil dikirim');
         redirect('rekapan_perhari');
     }
-    
+    public function tunjuk(){
+        $data= $this->uri->segment(3);
+        echo $data;
+    }
 }

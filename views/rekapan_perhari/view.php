@@ -27,7 +27,7 @@
 						<!-- <?php print_r($total)  ;?> -->
 					
 					<?php if ($this->session->userdata('jabatan') == 'Panitia') { ?>
-						<a href="<?= base_url(); ?>firestore/rekapanPerhari" class="btn btn-primary"> Ingatkan ! </a>
+						<a href="<?= base_url(); ?>firestore/tunjuk/mbolos" class="btn btn-primary"> Ingatkan ! </a>
 						<?php } ?>
 					</div>
 				</div>
