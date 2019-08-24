@@ -2,6 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Core\Timestamp;
+use DateTime;
 
 
 class Firestore extends CI_Controller {
@@ -24,10 +26,10 @@ class Firestore extends CI_Controller {
         ]);
         $id = uniqid();
         $data=[
-        'status' => $id,
+            'tanggal' => new TimeStamp(new DateTime()),
         'url' => 'sipet.newplbsfm.org/',
         ];         
-        $firestore->collection('Rekap')->document('kilop')->set($data);
+        $firestore->collection('Rekap')->newDocument()->set($data);
         $this->session->set_flashdata('flash','Notifikasi Berhasil dikirim');
         
         redirect('agenda');
@@ -38,10 +40,11 @@ class Firestore extends CI_Controller {
         ]);
         $id = uniqid();
         $data=[
-        'status' => $id,
+        'tanggal' => new TimeStamp(new DateTime()),
         'url' => 'sipet.newplbsfm.org/',
+        
         ];         
-        $firestore->collection('Rekap')->document('kilop')->set($data);
+        $firestore->collection('Rekap')->newDocument()->set($data);
         $this->session->set_flashdata('flash','Notifikasi Berhasil dikirim');
         redirect('rekapan_perhari');
     }
@@ -71,7 +74,17 @@ class Firestore extends CI_Controller {
             }
         }
         // echo 'Hadir   :'.$berangkat.' | ';
-        echo $mbolos;
-        // echo 'Pending   :'.$waiting;
+        $firestore = new FirestoreClient([
+            'projectId' => 'sipetpolines-490a6',
+        ]);
+        $id = uniqid();
+        $data=[
+        'tanggal' => new TimeStamp(new DateTime()),
+        'url' => 'sipet.newplbsfm.org/',
+        'mbolos' => $mbolos,
+        ];         
+        $firestore->collection('Rekap')->newDocument()->set($data);
+        $this->session->set_flashdata('flash','Notifikasi Berhasil dikirim');
+        redirect('rekapan_perhari/index_hari');
     }
 }
