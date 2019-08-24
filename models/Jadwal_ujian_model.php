@@ -81,7 +81,8 @@ Class Jadwal_ujian_model extends CI_Model{
         $this->db->select('*');
         $this->db->from('jadwal');
         $this->db->join('matkul', 'jadwal.makul = matkul.makul');
-        $this->db->where('jadwal.semester', $semester)->where('jadwal.tahun_ajaran', $tahun_ajaran)->where('matkul.status',1);
+        $this->db->where('jadwal.semester', $semester)->where('jadwal.tahun_ajaran', $tahun_ajaran)
+        ->where('matkul.semester', $semester)->where('matkul.tahun_ajaran', $tahun_ajaran)->where('matkul.status',1);
         return $this->db->get();
     }
     public function countKelas(){

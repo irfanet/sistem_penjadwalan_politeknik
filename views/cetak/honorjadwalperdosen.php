@@ -111,17 +111,17 @@
             $pajak = "15%";
             $potongan = 0.15;
             $pocongan = 0.15*$gaji;
-            $penghasilan = ($gaji*$hadir)-($hadir*$pocongan);
+            $penghasilan = ($gaji*$hadir);
           }else{
             $pajak = "5%";
             $potongan = 0.05;
             $pocongan = 0.05*$gaji;
-            $penghasilan = ($gaji*$hadir)-($hadir*$pocongan);
+            $penghasilan = ($gaji*$hadir);
           }
           $no--;	 
         ?>
         <tr>
-            <td colspan="5" align="center">Kehadiran <?= $hadir.' kali dari '.$no.' jadwal ('.$hadir.' * Rp. 50.000) - '.$pajak.' Pajak'?></td>
+            <td colspan="5" align="center">Kehadiran <?= $hadir.' kali dari '.$no.' jadwal ('.$hadir.' * Rp. 50.000)'?></td>
 			<td align="center"><?='Rp.' .nominal($penghasilan);?></td>
         </tr>
       </table>
@@ -138,11 +138,11 @@
         $gajiKoreksi = 2000;
         $honorSoal = $gajiSoal*$jmlMakul;
         $honorKoreksi = $gajiKoreksi*$jmlKelas*24;
-        $totalKotor = $honorSoal+$honorKoreksi;
+        $totalKotor = $honorSoal+$honorKoreksi+$penghasilan;
         $totalBersih = $totalKotor - ($totalKotor*$potongan);
 
       ?>
-      <h4><?php echo "Honor Lainnya :" ?></h4>       
+      <h4><?php echo "Total Honor :" ?></h4>       
       <table >
         <tr>
           <td>Honor Pembuatan Soal</td>
@@ -151,6 +151,10 @@
         <tr>
           <td>Honor Koreksi</td>
           <td>= Rp. <?= nominal($honorKoreksi).' ('.$jmlKelas.' Kelas)'?></td>
+        </tr>
+        <tr>
+          <td>Honor Kehadiran</td>
+          <td>= Rp. <?= nominal($penghasilan)?></td>
         </tr>
         <tr>
           <td>Total</td>

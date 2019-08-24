@@ -90,16 +90,16 @@
 								<table>
 				
 								<tr>
-									<td>Hadir</td><td>:</td><td><?= $berangkat?><br></td>
+									<td><b>Hadir</td><td><b>: <?= $berangkat?><br></td>
 								</tr>
 								<tr>
-									<td>Tidak hadir</td><td>:</td><td><?= $mbolos?><br></td>
+									<td><b>Tidak hadir</td><td><b>: <?= $mbolos?><br></td>
 								</tr>
 								<tr>
-									<td>Menunggu Input</td><td>:</td><td><?= $null?><br></td>
+									<td><b>Menunggu Input</td><td><b>: <?= $null?><br></td>
 								</tr>
 								<tr>
-									<td>Jumlah</td><td>:</td><td><?= $berangkat?><br></td>
+									<td><b>Jumlah</td><td><b>: <?= $no-1?><br></td>
 								</tr>
 								</table>
 							</div>
