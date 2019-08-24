@@ -123,7 +123,13 @@
 			<td align="center"><?='Rp.' .nominal($penghasilan);?></td>
         </tr>
       </table>
-      <br>  
+      <br>
+      <?php 
+    
+      $id = $linedosen['id'];
+      echo $makul[$id];
+      echo $kelas[$id];
+      ?>
       <pagebreak />
       
 

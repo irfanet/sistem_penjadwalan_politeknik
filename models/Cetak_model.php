@@ -33,10 +33,28 @@ class Cetak_model extends CI_Model
     public function jadwalperdosen()
     {
         $this->getSet();
-        $sqlPerDosen = $this->db->query("SELECT *,a.id as id_jadwal FROM jadwal a inner join pegawai b on a.pengawas=b.nama_singkat WHERE a.semester='$this->semester' AND a.tahun_ajaran='$this->tahun_ajaran' order by a.id");
+        $sqlPerDosen = $this->db->query("SELECT *,a.id as id_jadwal FROM jadwal a 
+        inner join pegawai b on a.pengawas=b.nama_singkat 
+        inner join matkul c on a.makul=c.makul
+        WHERE a.semester='$this->semester' AND a.tahun_ajaran='$this->tahun_ajaran'
+        AND c.semester='$this->semester' AND c.tahun_ajaran='$this->tahun_ajaran'
+        AND c.status=1 order by a.id");
         return $sqlPerDosen->result_array();
     }
     public function prpengambilanberkas()
+    {
+        $this->getSet();
+        $queryPengampu = $this->db->query("SELECT * FROM jadwal a inner join pengampu b on CONCAT(a.makul,'-',a.kelas) = b.kunci 
+        inner join pegawai c on c.nama_singkat=b.pengampu
+        inner join matkul d on a.makul=d.makul 
+        WHERE a.semester='$this->semester' AND a.tahun_ajaran='$this->tahun_ajaran'
+        AND b.semester='$this->semester' AND b.tahun_ajaran='$this->tahun_ajaran'
+        AND d.semester='$this->semester' AND d.tahun_ajaran='$this->tahun_ajaran'
+        AND d.status = 1
+        order by c.nama_lengkap, a.makul, a.kelas, a.kelompok");
+        return $queryPengampu->result_array();
+    }
+    public function prpengambilanberkasBackup()
     {
         $this->getSet();
         $queryPengampu = $this->db->query("SELECT * FROM jadwal inner join pengampu on CONCAT(jadwal.makul,'-',jadwal.kelas) = pengampu.kunci 
@@ -48,21 +66,20 @@ class Cetak_model extends CI_Model
     public function prpengawascadanganperhari()
     {
         $this->getSet();
-        $queryHari = $this->db->query("SELECT haritanggal, CONCAT(haritanggal,'+',jam) as harijamtes, jam FROM `jadwal`  WHERE semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran' group by harijamtes order by id");
+        $queryHari = $this->db->query("SELECT haritanggal, CONCAT(haritanggal,'+',jam) as harijamtes, jam FROM `jadwal`  
+        WHERE semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran' group by harijamtes order by id");
         return $queryHari->result_array();
     }
     public function pengawascadanganperhari()
     {
-
         $sqlPerHari = $this->db->query("SELECT panitia.nama_singkat, nama_lengkap, id_prodi 
         from pengawas_cadangan panitia inner join pegawai dosen on panitia.nama_singkat=dosen.nama_singkat 
         where panitia.nama_singkat NOT IN 
         (SELECT distinct(pengawas) as nama_singkat, CONCAT(haritanggal,'+',jam) as kunci FROM jadwal inner join pengawas_cadangan on pengawas=nama_singkat 
         inner join pegawai dosen on pengawas=dosen.nama_singkat) LIMIT 12");
         return $sqlPerHari->result_array();
-
-
     }
+
     public function denahruang()
     {
         $sql = $this->db->query('SELECT * FROM ruang_kelas');
@@ -123,15 +140,38 @@ class Cetak_model extends CI_Model
         return $sqlPerDosen;
     }
     public function getAmplop($tgl,$semester,$tahun_ajaran){
-        return $this->db->query("SELECT *,CONCAT(a.makul,'-',a.kelas) as kunci FROM jadwal a
+        return $this->db->query("SELECT * FROM jadwal a
         INNER JOIN pengampu b ON CONCAT(a.makul,'-',a.kelas) =  b.kunci
         INNER JOIN pegawai c ON b.pengampu = c.nama_singkat
         INNER JOIN prodi d ON c.id_prodi = d.kode
         INNER JOIN matkul e ON a.makul = e.makul 
         WHERE a.semester='$semester' AND a.tahun_ajaran='$tahun_ajaran' 
-        AND  b.semester='$semester' AND b.tahun_ajaran='$tahun_ajaran'
+        AND b.semester='$semester' AND b.tahun_ajaran='$tahun_ajaran'
         AND e.status=1 
         AND haritanggal='$tgl'");
+    }
+    public function honorPembuatanSoal($semester,$tahun_ajaran){
+        // return $this->db->query("SELECT * FROM pengampu a  
+        // INNER JOIN pegawai b ON a.pengampu=b.nama_singkat
+        // INNER JOIN soal_ujian c ON b.id=c.id_pegawai
+        // INNER JOIN matkul d ON a.makul = d.makul
+        // WHERE a.semester='$semester' AND a.tahun_ajaran='$tahun_ajaran' 
+        // AND c.semester='$semester' AND c.tahun_ajaran='$tahun_ajaran'
+        // AND d.semester='$semester' AND d.tahun_ajaran='$tahun_ajaran'
+        // AND d.status=1
+        // GROUP BY b.makul");
+        return $this->db->query("SELECT * FROM soal_ujian a
+        INNER JOIN pegawai b ON a.id_pegawai=b.id 
+        WHERE semester='$semester' AND tahun_ajaran='$tahun_ajaran'");
+    }
+    public function cekSoal($id,$semester,$tahun_ajaran){
+        return $this->db->query("SELECT * FROM soal_ujian 
+        WHERE id_pegawai='$id' AND semester='$semester' AND tahun_ajaran='$tahun_ajaran'
+        GROUP BY matkul");
+    }
+    public function cekKelas($id,$semester,$tahun_ajaran){
+        return $this->db->query("SELECT * FROM soal_ujian 
+        WHERE id_pegawai='$id' AND semester='$semester' AND tahun_ajaran='$tahun_ajaran'");
     }
 }
                         

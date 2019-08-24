@@ -9,7 +9,13 @@ class Cari_jadwal_model extends CI_Model {
                         
     public function filter($cariJadwal){
         $this->getSet();
-        $sqlPerDosen = $this->db->query("SELECT a.id,haritanggal, jam, makul, pengawas, kelas, ruang, kelompok, b.nama_lengkap as nama_lengkap FROM jadwal a inner join pegawai b on pengawas=nama_singkat  WHERE b.nama_lengkap LIKE '%".$cariJadwal."%' AND semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran' order by b.nama_lengkap");
+        $sqlPerDosen = $this->db->query("SELECT a.id,haritanggal, jam, a.makul, pengawas, kelas, ruang, kelompok, b.nama_lengkap as nama_lengkap FROM jadwal a 
+        inner join pegawai b on a.pengawas=b.nama_singkat 
+        inner join matkul c on a.makul=c.makul
+        WHERE b.nama_lengkap LIKE '%".$cariJadwal."%' 
+        AND c.status=1
+        AND a.semester='$this->semester' AND a.tahun_ajaran='$this->tahun_ajaran'
+        AND c.semester='$this->semester' AND c.tahun_ajaran='$this->tahun_ajaran' order by b.nama_lengkap");
         return $sqlPerDosen->result_array(); 
     }
 

@@ -106,11 +106,22 @@ class Cetak extends CI_Controller {
 
         $data['querydosen'] = $this->Cetak_model->prjadwalperdosen();
         $data['queryPerDosen'] = $this->Cetak_model->jadwalperdosen();
+        $dosen =  $this->Cetak_model->prjadwalperdosen();
+        $data['soal'] =  $this->Cetak_model->honorPembuatanSoal($this->semester,$this->tahun_ajaran)->result_array();
+        $soal =  $this->Cetak_model->honorPembuatanSoal($this->semester,$this->tahun_ajaran)->result_array();
+        
+        foreach($dosen as $d){
+            $id = $d['id'];
+            $makul[$id] = $this->Cetak_model->cekSoal($id,$this->semester,$this->tahun_ajaran)->num_rows();
+            $kelas[$id] = $this->Cetak_model->cekKelas($id,$this->semester,$this->tahun_ajaran)->num_rows();
+        }
+        $data['makul'] = $makul;
+        $data['kelas'] = $kelas;
         $mpdf = new \Mpdf\Mpdf();
         $mpdf->AddPage();
-        $html = $this->load->view('cetak/honorjadwalperdosen',$data,true);
-        $mpdf->WriteHTML($html);
-        $mpdf->Output($nama_dokumen.".pdf" ,'I');
+        $html = $this->load->view('cetak/honorjadwalperdosen',$data);
+        // $mpdf->WriteHTML($html);
+        // $mpdf->Output($nama_dokumen.".pdf" ,'I');
     }
     public function denahruang(){
         error_reporting(E_ALL ^ E_NOTICE);
@@ -168,6 +179,15 @@ class Cetak extends CI_Controller {
 
         $data['queryHari'] = $this->Cetak_model->getAmplop($haritanggal,$this->semester,$this->tahun_ajaran)->result_array();
         // $this->load->view('cetak/amplop', $data);
+    }
+    public function honorPembuatanSoal(){
+        // $makul = $this->Cetak_model->honorPembuatanSoal($this->semester,$this->tahun_ajaran)->result_array();
+        $soal = $this->Cetak_model->honorPembuatanSoal($this->semester,$this->tahun_ajaran)->result_array();
+        $makul = $this->Cetak_model->cekMakul($this->semester,$this->tahun_ajaran)->result_array();
+        foreach($soal as $s){
+            
+        }
+        
     }
 }
         

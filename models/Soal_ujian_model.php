@@ -39,6 +39,10 @@ Class Soal_ujian_model extends CI_Model
         // $this->db->insert('soal_ujian',$data);
     }
 
+    public function tampilSoalSemua($semester,$tahun_ajaran){
+        return $this->db->query("select *,a.id, a.kelas, a.matkul, a.semester, a.tahun_ajaran, a.soal, b.nama_singkat from soal_ujian a left join
+                                     pegawai b on a.id_pegawai=b.id where semester='$semester' AND tahun_ajaran='$tahun_ajaran' order by a.id desc")->result_array();
+     }
     public function tampilSoal($semester,$tahun_ajaran){
        return $this->db->query("select *,a.id, a.kelas, a.matkul, a.semester, a.tahun_ajaran, a.soal, b.nama_singkat from soal_ujian a left join
                                     pegawai b on a.id_pegawai=b.id where semester='$semester' AND tahun_ajaran='$tahun_ajaran' and penggandaan=0 order by a.id desc")->result_array();
@@ -98,9 +102,12 @@ Class Soal_ujian_model extends CI_Model
     public function getMatkul(){
         $this->getSet();    
         $nama=$this->session->userdata('nama');
-        return $this->db->query("SELECT * FROM pengampu WHERE pengampu='$nama' 
-        AND semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran'
-        GROUP BY makul")->result();
+        return $this->db->query("SELECT * FROM pengampu a
+        INNER JOIN matkul b ON a.makul=b.makul
+        WHERE a.pengampu='$nama' AND b.status=1
+        AND a.semester='$this->semester' AND a.tahun_ajaran='$this->tahun_ajaran'
+        AND b.semester='$this->semester' AND b.tahun_ajaran='$this->tahun_ajaran'
+        GROUP BY a.makul")->result();
     }
     public function get_kelas($id){
         $this->getSet();
@@ -114,20 +121,28 @@ Class Soal_ujian_model extends CI_Model
     public function get_notif(){
         $this->getSet();
         $nama=$this->session->userdata('nama');
-        return $this->db->query("SELECT * FROM pengampu WHERE kelas NOT IN 
+        return $this->db->query("SELECT * FROM pengampu a 
+        INNER JOIN matkul b ON a.makul=b.makul
+        WHERE a.kelas NOT IN 
         (SELECT kelas FROM soal_ujian where semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran') 
-        AND pengampu='$nama' 
-        AND semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran'
-        GROUP BY makul")->result();        
+        AND a.pengampu='$nama' 
+        AND a.semester='$this->semester' AND a.tahun_ajaran='$this->tahun_ajaran'
+        AND b.semester='$this->semester' AND b.tahun_ajaran='$this->tahun_ajaran'
+        AND b.status=1
+        GROUP BY a.makul")->result();        
     }
     public function count_notif(){
         $this->getSet();
         $nama=$this->session->userdata('nama');
-        return $this->db->query("SELECT * FROM pengampu WHERE kelas NOT IN 
+        return $this->db->query("SELECT * FROM pengampu a 
+        INNER JOIN matkul b ON a.makul=b.makul
+        WHERE a.kelas NOT IN 
         (SELECT kelas FROM soal_ujian where semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran') 
-        AND pengampu='$nama' 
-        AND semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran'
-        GROUP BY makul ");        
+        AND a.pengampu='$nama' 
+        AND a.semester='$this->semester' AND a.tahun_ajaran='$this->tahun_ajaran'
+        AND b.semester='$this->semester' AND b.tahun_ajaran='$this->tahun_ajaran'
+        AND b.status=1
+        GROUP BY a.makul");        
     }
     public function get_notif_kelas(){
         $this->getSet();
