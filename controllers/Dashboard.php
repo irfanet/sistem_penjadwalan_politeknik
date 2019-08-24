@@ -120,23 +120,23 @@ class Dashboard extends CI_Controller {
 
         $importMakul = $this->dashboard_model->notif_import_makul($this->semester,$this->tahun_ajaran)->num_rows();
         if($importMakul==0){
-            $data['import_makul'] = "<strong>Segera Import file CSV Data Matkul !</strong> Semester : $this->semester Tahun : $this->tahun_ajaran.";
+            $data['import_makul'] = "<strong>Segera Import file CSV Data Matkul !</strong>";
         }
         $importPengampu = $this->dashboard_model->notif_import_pengampu($this->semester,$this->tahun_ajaran)->num_rows();
         if($importPengampu==0){
-            $data['import_pengampu'] = "<strong>Segera Import file CSV Data Pengampu !</strong> Semester : $this->semester Tahun : $this->tahun_ajaran.";
+            $data['import_pengampu'] = "<strong>Segera Import file CSV Data Pengampu !</strong>";
         }
         $importPengawasCadangan = $this->dashboard_model->notif_import_pengawasCadangan($this->semester,$this->tahun_ajaran)->num_rows();
         if($importPengawasCadangan==0){
-            $data['import_pengawasCadangan'] = "<strong>Segera Import file CSV Data Pengawas Cadangan !</strong> Semester : $this->semester Tahun : $this->tahun_ajaran.";
+            $data['import_pengawasCadangan'] = "<strong>Segera Import file CSV Data Pengawas Cadangan !</strong>";
         }
-        $importJadwal = $this->dashboard_model->notif_import_pengawasCadangan($this->semester,$this->tahun_ajaran)->num_rows();
+        $importJadwal = $this->dashboard_model->notif_import_jadwal($this->semester,$this->tahun_ajaran)->num_rows();
         if($importJadwal==0){
-            $data['import_jadwal'] = "<strong>Segera Import file CSV Jadwal !</strong> Semester : $this->semester Tahun : $this->tahun_ajaran.";
+            $data['import_jadwal'] = "<strong>Segera Import file CSV Jadwal !</strong>";
         }
         $notifAgenda = $this->dashboard_model->notif_agenda($this->semester,$this->tahun_ajaran)->num_rows();
         if($notifAgenda<10){
-            $data['notif_agenda'] = "<strong>Tanggal Agenda belum terisi semua!</strong> Semester : $this->semester Tahun : $this->tahun_ajaran.";
+            $data['notif_agenda'] = "<strong>Segera Lengkapi Tanggal Agenda Kegiatan !</strong>";
         }
         
         $cek1 = $this->Panitia_ujian_model->tampilKabid($this->semester,$this->tahun_ajaran)->num_rows();
@@ -150,7 +150,7 @@ class Dashboard extends CI_Controller {
         $cek9 = $this->Panitia_ujian_model->tampilPembantu($this->semester,$this->tahun_ajaran)->num_rows();
         // $notif_panitia = $cek1 + $cek2 + $cek3 + $cek4 + $cek5 + $cek6 + $cek7 + $cek8 + $cek9;
         if($cek1 == 0 || $cek2 == 0 || $cek3 == 0 || $cek4 == 0 || $cek5 == 0 || $cek6 == 0 || $cek7 == 0 || $cek8 == 0 || $cek9 == 0){
-            $data['notif_panitia'] = "<strong>Panitian Ujian belum terisi semua! </strong> Semester : $this->semester Tahun : $this->tahun_ajaran.";
+            $data['notif_panitia'] = "<strong>Segera Lengkapi Panitia Ujian ! </strong>";
         }
 
         $this->load->view('templates/header',$data);

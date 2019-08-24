@@ -195,7 +195,7 @@ a:link{
 			</a>
 			<?php } ?>
 			<?php if (isset($import_jadwal)) { ?>
-			<a href="data_jurusan/jadwal_ujian">
+			<a href="jadwal_ujian">
 				<div class="alert alert-warning fade in">
 				<?php echo $import_jadwal; ?></p>
 			</div>
@@ -215,7 +215,7 @@ a:link{
 			</div>
 			</a>
 			<?php } ?>
-			<?php }?>
+		<?php }?>
 
 		<?php foreach ($notif as $alert) {	?>
 
