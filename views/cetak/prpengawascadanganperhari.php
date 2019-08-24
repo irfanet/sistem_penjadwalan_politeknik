@@ -65,13 +65,13 @@
         <tr>
           <td height="" >Hari/Tanggal</td>
           <td >:</td>
-          <td ><?php echo $lineHari['haritanggal']; ?></td>
+          <td ><?php echo $lineHari['semester']; ?></td>
           <td >&nbsp;</td>
         </tr>
         <tr>
           <td height="" >Jam</td>
           <td >:</td>
-          <td ><?php echo $lineHari['jam']; ?></td>
+          <td ><?php echo $lineHari['tahun_ajaran']; ?></td>
           <td >&nbsp;</td>
         </tr>
       </table>
@@ -86,10 +86,13 @@
         <?php
       $sqlPerHari = "SELECT panitia.nama_singkat, nama_lengkap, id_prodi 
       from pengawas_cadangan panitia inner join pegawai dosen on panitia.nama_singkat=dosen.nama_singkat 
-      where panitia.nama_singkat NOT IN 
+      where panitia.semester='".$lineHari['semester']."' and panitia.tahun_ajaran='".$lineHari['tahun_ajaran']."'
+      and panitia.nama_singkat NOT IN 
       (SELECT distinct(pengawas) as nama_singkat FROM jadwal inner join pengawas_cadangan on pengawas=nama_singkat 
       inner join pegawai dosen on pengawas=dosen.nama_singkat 
-      where CONCAT(haritanggal,'+',jam)='".$lineHari['harijamtes']."') LIMIT 12";
+      where CONCAT(haritanggal,'+',jam)='".$lineHari['harijamtes']."' 
+      and jadwal.semester='".$lineHari['semester']."' and jadwal.tahun_ajaran='".$lineHari['tahun_ajaran']."'
+      and pengawas_cadangan.semester='".$lineHari['semester']."' and pengawas_cadangan.tahun_ajaran='".$lineHari['tahun_ajaran']."') LIMIT 12";
       $no=0;
       $queryPerHari = $this->db->query($sqlPerHari);
       if ($queryPerHari->num_rows() > 0) {

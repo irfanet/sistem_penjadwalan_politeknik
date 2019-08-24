@@ -66,21 +66,22 @@ class Cetak_model extends CI_Model
     public function prpengawascadanganperhari()
     {
         $this->getSet();
-        $queryHari = $this->db->query("SELECT haritanggal, CONCAT(haritanggal,'+',jam) as harijamtes, jam FROM `jadwal`  
+        $queryHari = $this->db->query("SELECT *,haritanggal, CONCAT(haritanggal,'+',jam) as harijamtes, jam FROM `jadwal`  
         WHERE semester='$this->semester' AND tahun_ajaran='$this->tahun_ajaran' group by harijamtes order by id");
         return $queryHari->result_array();
     }
     public function pengawascadanganperhari()
     {
         $this->getSet();
-        $sqlPerHari = $this->db->query("SELECT panitia.nama_singkat, nama_lengkap, id_prodi 
-        from pengawas_cadangan panitia inner join pegawai dosen on panitia.nama_singkat=dosen.nama_singkat 
-        where panitia.nama_singkat 
-        AND panitia.semester='$this->semester' AND panitia.tahun_ajaran='$this->tahun_ajaran'
-        NOT IN (SELECT distinct(pengawas) as nama_singkat, CONCAT(haritanggal,'+',jam) as kunci FROM jadwal inner join pengawas_cadangan on pengawas=nama_singkat 
-        inner join pegawai dosen on pengawas=dosen.nama_singkat 
-        where jadwal.semester='$this->semester' AND jadwal.tahun_ajaran='$this->tahun_ajaran'
-        AND pengawas_cadangan.semester='$this->semester' AND pengawas_cadangan.tahun_ajaran='$this->tahun_ajaran' ) LIMIT 12");
+        $sqlPerHari = $this->db->query("SELECT a.nama_singkat, nama_lengkap, id_prodi 
+        from pengawas_cadangan a inner join pegawai b on a.nama_singkat=b.nama_singkat 
+        where a.nama_singkat 
+        AND a.semester='$this->semester' AND a.tahun_ajaran='$this->tahun_ajaran'
+        NOT IN (SELECT distinct(a.pengawas) as nama_singkat, CONCAT(a.haritanggal,'+',a.jam) as kunci FROM jadwal a 
+        inner join pengawas_cadangan b on a.pengawas=b.nama_singkat 
+        inner join pegawai c on a.pengawas=c.nama_singkat 
+        where a.semester!='$this->semester' AND a.tahun_ajaran!='$this->tahun_ajaran'
+        AND b.semester!='$this->semester' AND b.tahun_ajaran!='$this->tahun_ajaran' ) LIMIT 12");
         return $sqlPerHari->result_array();
     }
 
