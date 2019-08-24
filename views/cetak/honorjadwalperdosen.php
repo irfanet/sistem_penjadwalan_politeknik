@@ -109,27 +109,59 @@
           $golongan = $linedosen['golongan'];
           if($golongan==4){
             $pajak = "15%";
+            $potongan = 0.15;
             $pocongan = 0.15*$gaji;
             $penghasilan = ($gaji*$hadir)-($hadir*$pocongan);
           }else{
             $pajak = "5%";
+            $potongan = 0.05;
             $pocongan = 0.05*$gaji;
             $penghasilan = ($gaji*$hadir)-($hadir*$pocongan);
           }
           $no--;	 
         ?>
         <tr>
-            <td colspan="5" align="center">Kehadiran <?= $hadir.' kali dari '.$no.' jadwal ('.$hadir.' * Rp. 50.000) - '.$pajak.' pajak'?></td>
+            <td colspan="5" align="center">Kehadiran <?= $hadir.' kali dari '.$no.' jadwal ('.$hadir.' * Rp. 50.000) - '.$pajak.' Pajak'?></td>
 			<td align="center"><?='Rp.' .nominal($penghasilan);?></td>
         </tr>
       </table>
       <br>
+     
       <?php 
     
-      $id = $linedosen['id'];
-      echo $makul[$id];
-      echo $kelas[$id];
+        $id = $linedosen['id'];
+      
+        $jmlMakul = $makul[$id];
+        $jmlKelas = $kelas[$id];
+
+        $gajiSoal = 82000;
+        $gajiKoreksi = 2000;
+        $honorSoal = $gajiSoal*$jmlMakul;
+        $honorKoreksi = $gajiKoreksi*$jmlKelas*24;
+        $totalKotor = $honorSoal+$honorKoreksi;
+        $totalBersih = $totalKotor - ($totalKotor*$potongan);
+
       ?>
+      <h4><?php echo "Honor Lainnya :" ?></h4>       
+      <table >
+        <tr>
+          <td>Honor Pembuatan Soal</td>
+          <td>= Rp. <?= nominal($honorSoal).' ('.$jmlMakul.' Mata Kuliah)'?></td>
+        </tr>
+        <tr>
+          <td>Honor Koreksi</td>
+          <td>= Rp. <?= nominal($honorKoreksi).' ('.$jmlKelas.' Kelas)'?></td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td>=  Rp. <?= nominal($totalKotor).' - '.$pajak.' Pajak'?></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>= Rp. <?= nominal($totalBersih)?></td>
+        </tr>
+      </table>
+   
       <pagebreak />
       
 

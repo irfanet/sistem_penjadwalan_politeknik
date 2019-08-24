@@ -119,9 +119,9 @@ class Cetak extends CI_Controller {
         $data['kelas'] = $kelas;
         $mpdf = new \Mpdf\Mpdf();
         $mpdf->AddPage();
-        $html = $this->load->view('cetak/honorjadwalperdosen',$data);
-        // $mpdf->WriteHTML($html);
-        // $mpdf->Output($nama_dokumen.".pdf" ,'I');
+        $html = $this->load->view('cetak/honorjadwalperdosen',$data,true);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output($nama_dokumen.".pdf" ,'I');
     }
     public function denahruang(){
         error_reporting(E_ALL ^ E_NOTICE);
