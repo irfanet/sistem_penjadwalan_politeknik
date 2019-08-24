@@ -106,7 +106,7 @@
               <tr>
                 <td style="height:30px;border-bottom: 0px none white;" width="32" align="center"><?php echo $no; ?></td>        
                 <td style="padding-left:5pt;border-bottom: 0px none white;"><?php echo $linePerHari['nama_lengkap']; ?></td>                
-                <td style="height:30px;border-bottom: 0px none white;" width="32" align="center"><?=$linePerHari['prodi']?></td>
+                <td style="height:30px;border-bottom: 0px none white;" width="32" align="center"><?=$linePerHari['id_prodi']?></td>
                 <td style="border-bottom: 0px none white" align="center" align="center">&nbsp;</td>
               </tr>
 
