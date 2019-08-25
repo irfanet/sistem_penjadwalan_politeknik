@@ -85,6 +85,6 @@ class Firestore extends CI_Controller {
         ];         
         $firestore->collection('Rekap')->newDocument()->set($data);
         $this->session->set_flashdata('flash','Notifikasi Berhasil dikirim');
-        redirect('rekapan_perhari');
+        redirect('rekapan_perhari/index_hari');
     }
 }
