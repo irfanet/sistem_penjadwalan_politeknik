@@ -29,18 +29,26 @@
         .margin{
           margin-left: 20px;
         }
+        @page {
+        padding:10px; // As your need
+        }
+        .print_area {
+          text-decoration: bold;
+          border:2px solid #000000;
+        }
+
 
       </style>
       </head>
 
       <body>
       <form>
-
-      <table width="1000" height="140" border="1" cellpadding="5" cellspacing="0"  bordercolor="#000000">
+      <div class="print_area">
+      <table width="100%" height="140" border="1" cellpadding="5" cellspacing="0"  bordercolor="#000000">
           <tr>
             <td width="125" align="center"><img src="<?= base_url();?>assets/img/logo_polines.png" width="97" height="101">
-        <br>POLITKENIK<br>
-        NEGRERI SEMARANG</td>
+        <br><strong><h4> POLITKENIK<br>
+        NEGRERI SEMARANG</h4></strong></td>
             <td width="395" rowspan="2" align="center"><div class="style1">
               <h2><strong>
       PANITIA <br>
@@ -51,40 +59,47 @@
           </tr>
       </table>
       <br>  
-      <div align="right"><h1 class="biru"><?= $lineHari['kelompok']?></h1></div>
+      <!-- <div align="right"><h1 class="biru"><?= $lineHari['kelompok']?></h1></div> -->
+   
       <div align="center">
-      <table width="1000">
+      <table width="100%">
+        <tr>
+          <th width='50%' colspan="2"></th>
+          <th width='50%' colspan="2" align="right"><h1 class="biru"><?= $lineHari['kelompok']?></h1></th>
+        </tr>
         <tr>
           <td>MATA KULIAH </td>
           <td>: <?= $lineHari['makul']?></td>
-          <td class="margin">PROGRAM STUDI</td>
-          <td>: <?= $lineHari['nama']?></td>
+          <td>PROGRAM STUDI</td>
+          <td>: <span style="color:#249F9F;"><?= $lineHari['nama']?></span></td>
         </tr>
         <tr>
           <td>PENGAMPU </td>
           <td>: <?= $lineHari['pengampu']?></td>
-          <td class="margin">RUANG</td>
+          <td>RUANG</td>
           <td>: <?= $lineHari['ruang']?></td>
         </tr>
         <tr>
           <td>KELAS </td>
           <td>: <?= $lineHari['kelas']?></td>
-          <td class="margin">PUKUL </td>
+          <td>PUKUL </td>
           <td>: <?= $lineHari['jam']?></td>
         </tr>
         <tr>
           <td>HARI / TANGGAL </td>
           <td>: <?= $lineHari['haritanggal']?></td>
-          <td class="margin">PENGAWAS </td>
+          <td>PENGAWAS </td>
           <td>: 1. <?= $lineHari['pengawas']?> </td>
         </tr>
         <tr>
           <td colspan="3"></td>
           <td>  2. ....................</td>
         </tr>
+      </table>
        <br>
        <br>
        <br>
+       <table>
         <tr>
           <td>ISI </td>
           <td>: </td>
@@ -125,6 +140,7 @@
           <td></td>
         </tr>
       </table>
+</div>
       <br>  
  
 <pagebreak />
